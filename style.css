@@ -1,0 +1,430 @@
+html,
+body {
+  width: 100vw;
+  /* 화면 전체 너비 */
+  height: 100vh;
+  /* 화면 전체 높이 */
+  font-family: 'Poppins', sans-serif;
+  background: transparent;
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  background: 
+    linear-gradient(rgba(147, 141, 141, 0.92), rgba(15,15,15,0.92)),
+    radial-gradient(circle at 20% 30%, #4b6cb7 0%, transparent 60%),
+    radial-gradient(circle at 80% 20%, #43e97b 0%, transparent 60%),
+    radial-gradient(circle at 60% 80%, #f7971e 0%, transparent 60%),
+    radial-gradient(circle at 90% 70%, #fd5c63 0%, transparent 60%),
+    radial-gradient(circle at 50% 50%, #fff700 0%, transparent 70%);
+  filter: blur(60px);
+}
+
+.blurred-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 30% 40%, #66ccff, transparent 40%),
+    radial-gradient(circle at 70% 30%, #b58fff, transparent 45%),
+    radial-gradient(circle at 50% 70%, #88ff66, transparent 45%),
+    radial-gradient(circle at 20% 80%, #ffe066, transparent 50%),
+    radial-gradient(circle at 80% 80%, #ff6699, transparent 50%);
+  filter: blur(120px);
+  opacity: 0.5;
+}
+
+
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  /* 화면 전체 너비 */
+  height: 100vh;
+  /* 화면 전체 높이 */
+  gap: 3rem;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  max-width: 350px;
+  /* border-radius: 2rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(16px) saturate(160%);
+  padding: 1rem 1rem;
+  transition: box-shadow 0.3s, background 0.3s; */
+}
+/* 
+.profile:hover {
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.22);
+  background: rgba(60, 60, 90, 0.28);
+} */
+
+.profile .school {
+  display: inline-block;
+  background: rgba(40, 40, 60, 0.22);
+  border-radius: 1.2em;
+  box-shadow: 0 2px 8px 0 rgba(31, 38, 135, 0.18);
+  border: 1.2px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px) saturate(160%);
+  -webkit-backdrop-filter: blur(8px) saturate(160%);
+  padding: 0.08em 0.7em;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  transition: box-shadow 0.3s, background 0.3s;
+  font-size: 18px;
+}
+
+.name {
+  font-size: 2.2rem;
+  margin: 0.2rem 0 1.2rem 0;
+}
+
+.avatar {
+
+  margin-bottom: 1.2rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.social-icons img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 6px;
+  box-shadow: 0 2px 8px #0004;
+  transition: transform 0.2s;
+}
+
+.social-icons img:hover {
+  transform: scale(1.12);
+}
+
+/* Chrome, Edge, Safari */
+.about {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
+
+.about::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
+
+
+.about {
+  position: relative;
+  top: 8vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* 상단 정렬 */
+  align-items: flex-start;
+  /* 좌측 정렬, 필요시 center로 변경 가능 */
+  max-width: 700px;
+  height: 100vh;
+  /* 부모 높이 채우기 */
+  box-sizing: border-box;
+  gap: 1.5rem;
+  overflow-y: auto;
+  max-height: 100vh;
+  z-index: 1;
+
+}
+
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(40,40,60,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 2.5em;
+  box-shadow: 0 4px 24px 0 rgba(40,40,60,0.10);
+  padding: 0.7em 2.5em;
+  left: 3vw;
+  display: flex;
+  gap: 5rem;
+  margin-bottom: 5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  align-items: center;
+  border: 1.5px solid rgba(255,255,255,0.10);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.menu a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.menu a:hover {
+  color: #baff6b;
+}
+
+
+.content{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+  top: 100px;
+}
+
+.tech-icons {
+  display: flex;
+  gap: 5rem;
+  margin-bottom: 2.2rem;
+}
+
+.tech-icons img {
+  width: 48px;
+  height: 48px;
+  filter: drop-shadow(0 2px 8px #0006);
+}
+
+h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1.2rem 0;
+  letter-spacing: 0.03em;
+}
+
+.highlight {
+  color: #ffe14d;
+  font-size: 1.1em;
+  font-weight: 800;
+}
+
+.intro {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: #fff;
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+.emphasis {
+  color: #ffe14d;
+  font-weight: 600;
+  background: none;
+}
+
+#aboutContent {
+  text-align: center;
+}
+
+#aboutContent h1,
+#aboutContent h2,
+#aboutContent h3,
+#aboutContent p,
+#aboutContent ul,
+#aboutContent ol {
+  text-align: center;
+}
+
+/* Resume(aboutContent)에 resume-active 클래스가 있을 때만 가운데 정렬 */
+.resume-active {
+  text-align: center;
+}
+.resume-active h1,
+.resume-active h2,
+.resume-active h3,
+.resume-active p,
+.resume-active ul,
+.resume-active ol {
+  text-align: center;
+}
+
+/* Resume 개선 스타일 */
+.resume-card {
+  text-align: left;
+  padding: 2.5rem 2rem;
+  border-radius: 1.5rem;
+  background: rgba(40, 40, 60, 0.45);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  margin-bottom: 2.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  line-height: 1.95;
+}
+.resume-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffe14d;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.resume-sub {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 0.5rem;
+}
+.resume-period {
+  font-size: 1rem;
+  color: #bdbdbd;
+  margin-bottom: 1.2rem;
+}
+.resume-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem 3rem;
+  margin: 1.2rem 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.resume-list li {
+  font-size: 1.08rem;
+  color: #f3f4f6;
+  margin-bottom: 0.3rem;
+  min-width: 120px;
+}
+.resume-keyword {
+  color: #60a5fa;
+  font-weight: 700;
+}
+
+/* 카드 내부 텍스트 가독성 및 강조 개선 */
+.resume-card h3, .resume-card h4 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #ffe14d;
+  margin-bottom: 0.7rem;
+}
+.resume-card p, .resume-card ul, .resume-card li {
+  color: #f3f4f6;
+  font-size: 1.08rem;
+  line-height: 1.95;
+}
+.resume-card .sub, .resume-card .resume-period {
+  color: #bdbdbd;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+.resume-card ul {
+  margin: 0.5rem 0 0 1.2rem;
+  padding: 0;
+  list-style: disc inside;
+}
+.resume-card li strong, .resume-card .resume-keyword {
+  color: #60a5fa;
+  font-weight: 700;
+}
+.resume-card a {
+  color: #ffe14d;
+  text-decoration: underline;
+}
+
+/* 박스형 타임라인 효과 */
+.resume-timeline-wrapper {
+  position: relative;
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.resume-timeline-line {
+  position: absolute;
+  top: 0;
+  left: 1.1rem;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #ffe14d, transparent);
+  z-index: 0;
+  border-radius: 2px;
+}
+.resume-card.timeline-card {
+  position: relative;
+  padding-left: 2.5rem;
+  border-radius: 1.25rem;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-bottom: 2.5rem;
+}
+/* .timeline-dot 제거 */
+.timeline-dot {
+  display: none !important;
+}
+
+.rounded-highlight {
+  display: inline-block;
+  background: #ffe14d;
+  color: #222 !important;
+  font-weight: 700;
+  border-radius: 1.2em;
+  padding: 0.00em 0.7em;
+  font-size: 1em;
+  box-shadow: 0 2px 8px #0001;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+  transition: background 0.2s, color 0.2s;
+}
+.rounded-highlight strong {
+  color: #222 !important;
+}
+
+.link-badge {
+  display: inline-block;
+  border-radius: 1.2em;
+  padding: 0.08em 0.7em;
+  font-size: 1em;
+  font-weight: 700;
+  color: #222 !important;
+  background: #f3f4f6;
+  text-decoration: none !important;
+  vertical-align: middle;
+  box-shadow: 0 1px 4px #0001;
+  letter-spacing: 0.01em;
+  transition: background 0.2s, color 0.2s;
+}
+.link-badge.github {
+  background: #eaeaea;
+}
+.link-badge.view {
+  background: #d1e7dd;
+}
+.link-badge.docs {
+  background: #fff3cd;
+}
+.link-badge:hover {
+  background: #ffe14d;
+  color: #222 !important;
+}

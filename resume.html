@@ -1,0 +1,688 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Resume - 박동혁</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1f224179-a21c-8069-afdb-f2a5ccf3886e" class="page serif"><header><h1 class="page-title">Resume - 박동혁</h1><p class="page-description"></p></header><div class="page-body"><hr id="1f224179-a21c-8003-a21b-eb7bfa52337a"/><h3 id="1f224179-a21c-8085-8a8e-fb228b600b67" class=""><mark class="highlight-yellow_background"><strong>📚 학력</strong></mark></h3><p id="1f224179-a21c-80a4-bf4c-cd9107bb5f9f" class=""><strong>University of Maryland, College Park(UMCP)</strong></p><p id="1f224179-a21c-80dc-9ce2-c60510c4ea91" class="">컴퓨터과학 학사 (예정 졸업: 2027년 5월)</p><p id="1f224179-a21c-8025-895e-e4beee031359" class="">수강 과목: 미적분학 I &amp; II, 객체지향 프로그래밍, 컴퓨터 시스템, 자료구조 및 알고리즘, 선형대수학, 이산수학, 응용통계학, 데이터 사이언스</p><hr id="1f224179-a21c-801b-839d-ca516c2b2458"/><h3 id="1f224179-a21c-80b8-bf19-cb9c36873a7b" class=""><mark class="highlight-teal_background"><strong>🛠️ 기술 스킬</strong></mark></h3><p id="1f224179-a21c-807e-a158-c7c1c6aaedd3" class=""><strong>프로그래밍 언어</strong>: Java, C, Python, Kotlin, HTML, CSS, JavaScript</p><p id="1f224179-a21c-80fd-8fb2-e221495e2e8d" class=""><strong>도구 및 프레임워크</strong>: Spring, PyTorch, TensorFlow, D3.js, Django</p><hr id="1f224179-a21c-80c2-9a60-ced075e2e551"/><h3 id="1f224179-a21c-80ed-abb9-ec67f8235799" class=""><mark class="highlight-purple_background"><strong>🏢 경력</strong></mark></h3><p id="1f224179-a21c-803f-8bb0-dd6685346707" class=""><strong>메릴랜드 대학교 Human Data Interaction Lab - 학부 연구생</strong></p><p id="1f224179-a21c-80d8-8968-dba8aca3c2d3" class=""><a href="https://hdi.cs.umd.edu/">https://hdi.cs.umd.edu/</a></p><p id="1f224179-a21c-80bc-9b7f-ec34bc167a02" class="">2025년 2월 – 5월</p><ul id="1f224179-a21c-804d-b382-d316f692ab7c" class="bulleted-list"><li style="list-style-type:disc">데이터 시각화 구조 분석을 위한 웹 기반 주석 툴(VisAnatomy) 개발</li></ul><ul id="1f224179-a21c-809a-b2c5-f565d135e5c8" class="bulleted-list"><li style="list-style-type:disc">HTML, CSS, JavaScript, D3.js, Python을 활용해 SVG 처리 및 JSON 데이터 관리 시스템 구현</li></ul><ul id="1f224179-a21c-80cc-b0e1-e92da6af1579" class="bulleted-list"><li style="list-style-type:disc">일관된 데이터 관리를 위한 경로 ID 정렬 시스템 설계 및 구현</li></ul><ul id="1f224179-a21c-80fc-b3e1-f76de8856225" class="bulleted-list"><li style="list-style-type:disc">클라이언트-서버 간 실시간 동기화 시스템 구축 및 JSON 파일 구조 최적화</li></ul><ul id="1f224179-a21c-80ff-baa7-dc4b3dcdb045" class="bulleted-list"><li style="list-style-type:disc">사용자 친화적인 인터페이스 설계와 강력한 데이터 관리 시스템을 통해 데이터 일관성과 처리 효율성 향상</li></ul><p id="1f224179-a21c-8020-a149-dd07c26460df" class="">
+</p><p id="1f224179-a21c-80bb-be2a-ef522f8f4d5f" class=""><strong>안국엔지니어링 –  엔지니어 인턴</strong></p><p id="1f224179-a21c-80c1-8428-ca3cc8d053e0" class=""><em>2024년 6월 – 2024년 7월</em></p><ul id="1f224179-a21c-8095-af6a-e9cef64adb72" class="bulleted-list"><li style="list-style-type:disc">산업용 건물의 화재 감지 및 예방 시스템 설계 업무 지원</li></ul><ul id="1f224179-a21c-804d-81d6-c0c6433af197" class="bulleted-list"><li style="list-style-type:disc">CAD, FDS(Fire Dynamics Simulator), Pathfinder를 활용하여 화재 확산 모델링 및 대피 경로 최적화 수행</li></ul><ul id="1f224179-a21c-80e2-9aa7-f23a68c78c81" class="bulleted-list"><li style="list-style-type:disc">제어실을 화재 발생 지점으로 설정하여 화재 시나리오를 시뮬레이션하고, 시계 확보 범위, 온도 분포, 일산화탄소 농도 등의 정량적 데이터를 분석함</li></ul><hr id="1f224179-a21c-8061-bc20-d9f54aa221c9"/><h3 id="1f224179-a21c-80d6-a2b4-fec36e5dc223" class=""><mark class="highlight-red_background"><strong>🚧 프로젝트</strong></mark></h3><p id="1f224179-a21c-8095-86da-cb76b098d733" class=""><strong>AI 비서 개발</strong></p><p id="1f224179-a21c-80bf-9f96-eb178d79ae8e" class=""><em>현재 진행중</em></p><ul id="1f224179-a21c-806b-9ec6-df050c5370c1" class="bulleted-list"><li style="list-style-type:disc">Python과 OpenAI API를 활용하여 음성으로 컴퓨터를 제어하는 자동화 프로그램 개발</li></ul><ul id="1f224179-a21c-8092-a515-f0070c702b40" class="bulleted-list"><li style="list-style-type:disc">사용자의 음성 명령을 인식하고 GPT-4를 통해 AppleScript 코드로 변환하는 프로세스 구현</li></ul><ul id="1f224179-a21c-802e-9b90-c42bea096b45" class="bulleted-list"><li style="list-style-type:disc">음성 인식, AI 처리, 시스템 제어를 연결하는 파이프라인 설계</li></ul><ul id="1f224179-a21c-80ac-b5f1-c2630a2d0cbb" class="bulleted-list"><li style="list-style-type:disc">subprocess 모듈을 사용하여 생성된 스크립트를 실행하는 시스템 통합 기능 구현</li></ul><ul id="1f224179-a21c-807b-9bc6-f210f303d74f" class="bulleted-list"><li style="list-style-type:disc">기존 macOS Siri의 제약을 넘어, 사용자가 직접 원하는 워크플로우를 유연하게 자동화할 수 있도록 확장성 높은 AI 어시스턴트 개발</li></ul><p id="1f424179-a21c-8075-a347-e55a064cb5fa" class="">
+</p><p id="1f424179-a21c-80ba-a500-f65f714ec3aa" class=""><strong>수강신청 자동화 프로그램 개발</strong></p><figure id="1f424179-a21c-802b-b43f-e6759cf4b85f"><div class="source">https://github.com/lukakas0213/CourseCrawl/blob/main/AI_group_project/courseCrawl.py</div></figure><p id="1f424179-a21c-8013-b606-d2405b3f96f3" class=""><em>2024년 12월</em></p><ul id="20624179-a21c-80c6-a4be-ee41ff54b08c" class="bulleted-list"><li style="list-style-type:disc"><strong>Python과 Selenium</strong>을 활용하여 수강신청 페이지를 주기적으로 크롤링하고, 실시간 자리 변동을 감지하는 자동화 시스템 개발</li></ul><ul id="20624179-a21c-8076-b9dd-d7019dfafc24" class="bulleted-list"><li style="list-style-type:disc"><strong>WebDriver와 ActionChains</strong>를 통해 로그인, 인증, 과목 선택 등 복잡한 UI 동작을 정교하게 자동화</li></ul><ul id="20624179-a21c-80a0-9587-cbb0d64378d0" class="bulleted-list"><li style="list-style-type:disc"><strong>Duo 이중 인증 처리 및 Drop/Add 과정 자동화</strong>를 통해 대기 시간 없이 빠르게 수강 신청 가능</li></ul><ul id="20624179-a21c-80d3-8b2f-c57c644de342" class="bulleted-list"><li style="list-style-type:disc"><strong>텔레그램 API를 연동</strong>, 빈 자리가 생기면 사용자에게 즉시 알림을 전송하여 빠른 수강신청 유도</li></ul><ul id="20624179-a21c-8071-9e4a-f61d409e8560" class="bulleted-list"><li style="list-style-type:disc">수강신청 시스템 특성상 <strong>동시 사용자 환경에서의 안정성과 신뢰성</strong>을 고려하여, 세션 유지 및 예외 처리에 강한 구조 설계</li></ul><hr id="20624179-a21c-80a4-b206-d6acd7f7082c"/><p id="1f424179-a21c-80f5-9449-dd97f2e4573a" class="">
+</p><p id="1f224179-a21c-8004-abef-e05048f550f9" class=""><strong>Who&#x27;s Leaving Next? Machine Learning Solutions for Employee Retention</strong></p><figure id="1f224179-a21c-80b8-9dde-df797c22b1f7"><a href="https://lukakas0213.github.io/Whos_leaving_next_320_group_project/Whos_leaving_next.html" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">320_FInal_Project</div><div class="bookmark-description">In today’s corporate environment, employee retention is a major concern for HR departments, as hiring new employees requires a significant investment of time and resources. Our analysis focuses on predicting employee attrition using a dataset that includes features such as Education, JoiningYear, City, and PaymentTier. The main question we aim to answer is: Can we predict whether an employee is likely to leave the company based on their profile? Accurately identifying employees who are at a higher risk of leaving can help companies proactively implement retention strategies, ultimately reducing costs and minimizing the loss of valuable talent.</div></div><div class="bookmark-href">https://lukakas0213.github.io/Whos_leaving_next_320_group_project/Whos_leaving_next.html</div></div></a></figure><p id="1f224179-a21c-800d-aeef-fad21f1d0299" class=""><em>2025년 5월</em></p><ul id="1f224179-a21c-80c6-acd4-ef8c55142adc" class="bulleted-list"><li style="list-style-type:disc">Python과 머신러닝 알고리즘(Logistic Regression, KNN, Decision Tree, Random Forest)을 활용하여 직원 이직 여부를 예측하는 분류 모델 개발</li></ul><ul id="1f224179-a21c-80a8-96cd-c5ae094e4b73" class="bulleted-list"><li style="list-style-type:disc">Kaggle HR Analytics의 Employee.csv 데이터를 기반으로 이직과 관련된 요인 분석 (예: 나이, 성별, 근속연수, 경험 비율 등)</li></ul><ul id="1f224179-a21c-80c5-ba7c-e6ce1b9baa57" class="bulleted-list"><li style="list-style-type:disc">통계 분석 기법(Chi-Square, t-test, ANOVA)을 사용하여 주요 변수들의 이직 여부와의 유의미한 관계 도출</li></ul><ul id="1f224179-a21c-80fe-93d8-d684fe4ca890" class="bulleted-list"><li style="list-style-type:disc">Tenure(재직 기간), AgeExperienceRatio(나이 대비 경험 비율) 등의 특성을 새로 도입하여 예측 정확도 향상</li></ul><ul id="1f224179-a21c-80e6-ae60-ff135894f9dd" class="bulleted-list"><li style="list-style-type:disc">교차 검증(Stratified K-Fold)을 통해 모델 성능을 비교하고, 최적의 fold 수 및 KNN의 k값 결정</li></ul><ul id="1f224179-a21c-80c2-a519-fe676ad45659" class="bulleted-list"><li style="list-style-type:disc">Random Forest를 최종 모델로 선정하고 Feature Importance 시각화를 통해 핵심 변수 도출</li></ul><p id="1f224179-a21c-80a8-a97d-dc40ea15b25f" class="">
+</p><p id="1f224179-a21c-8053-ac89-c395806773c0" class=""><strong>Submit Server 시뮬레이터 개발</strong></p><figure id="1f224179-a21c-803d-af0a-facc967305fb"><div class="source">https://github.com/lukakas0213/submit_server</div></figure><p id="1f224179-a21c-8051-bcfc-ebb7c3651ad3" class=""><em>2023년 5월</em></p><ul id="1f224179-a21c-8031-a7a5-cd862f6abd6d" class="bulleted-list"><li style="list-style-type:disc">Java의 스레드 및 동기화를 활용하여 Submit Server를 시뮬레이션하는 병렬 시스템 개발</li></ul><ul id="1f224179-a21c-80bd-a695-cd13a809962c" class="bulleted-list"><li style="list-style-type:disc">파일 처리 지연을 최소화하고 동시 사용자 수 증가에도 안정적으로 작동할 수 있도록 시스템 확장성 최적화</li></ul><p id="1f224179-a21c-8096-a148-e4ec6493a63d" class="">
+</p><p id="1f224179-a21c-80cd-b3ec-d5e6e2767bb8" class=""><strong>공공 전동 킥보드용 음주 운전 방지 시스템 개발</strong></p><figure id="1f224179-a21c-8013-ae5d-c67f09656639"><div class="source">https://docs.google.com/document/d/1wqY3j8sCIIbds-Tg3b-p1gN6T8qoCAgqYc1Ye7YWynE/edit?tab=t.0</div></figure><p id="1f224179-a21c-80b4-8aa6-e740a277603d" class=""><em>2022년 4월</em></p><ul id="1f224179-a21c-80b6-b93e-eebd9ae6014c" class="bulleted-list"><li style="list-style-type:disc">Arduino를 활용하여 공공 전동 킥보드에서의 음주 운전을 방지하는 시스템 개발</li></ul><ul id="1f224179-a21c-80d6-a5ca-fefab9d0c4a5" class="bulleted-list"><li style="list-style-type:disc">알코올 센서를 통합하여 사용자의 혈중 알코올 농도(BAC)를 감지하고, 기준치를 초과할 경우 QR 코드 잠금 시스템을 작동시키는 서보 모터 설계</li></ul><ul id="1f224179-a21c-809c-8767-d4294e0e93de" class="bulleted-list"><li style="list-style-type:disc">초음파 센서, LED 표시등, DC 모터 등을 활용해 실시간 반응 메커니즘 구축</li></ul><ul id="1f224179-a21c-80a0-ad54-c298190d18ad" class="bulleted-list"><li style="list-style-type:disc">음주 상태에서의 킥보드 이용을 제한함으로써 대중의 안전을 향상시키는 것을 목표로 함</li></ul><hr id="1f224179-a21c-8043-8e99-d195850183af"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
