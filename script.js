@@ -1,4 +1,3 @@
-fetch('http://localhost:8080/api/posts')
 
 document.getElementById('copyEmail').addEventListener('click', function(e) {
   e.preventDefault();
