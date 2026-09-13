@@ -22,7 +22,8 @@ const I18N = {
     statClass: '졸업 예정',
     inProgress: '진행 중',
     boardSoon: '게시판은<br>준비 중이에요.',
-    nowRole: '학부 연구생',
+    nowOrg: '대한민국 육군',
+    nowRole: '소프트웨어 개발병',
   },
   en: {
     mission: 'Turning <mark>data</mark> into insight,<br>and tech into <mark class="y">better days</mark>.',
@@ -37,11 +38,26 @@ const I18N = {
     statClass: 'Expected',
     inProgress: 'In progress',
     boardSoon: 'The board is<br>coming soon.',
-    nowRole: 'Undergraduate Researcher',
+    nowOrg: 'ROK Army',
+    nowRole: 'Software Developer',
   },
 };
 
 const experience = [
+  {
+    period: { ko: '2026.03 – 현재', en: '2026.03 – Present' },
+    org: { ko: '대한민국 육군', en: 'Republic of Korea Army' },
+    role: { ko: '소프트웨어 개발병', en: 'Software Developer' },
+  },
+  {
+    period: '2025.08 – 2025.11',
+    org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
+    role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
+    desc: {
+      ko: 'Spring Boot 기반 모니터링 통합 서버와 Prometheus 메트릭·로그 수집 Python 라이브러리 개발',
+      en: 'Built a Spring Boot monitoring hub and a Python library that ships Prometheus metrics and logs',
+    },
+  },
   {
     period: '2025.02 – 2025.05', href: 'https://hdi.cs.umd.edu/',
     org: { ko: 'Human Data Interaction Lab', en: 'Human Data Interaction Lab' },
@@ -112,11 +128,11 @@ function item({ period, title, desc, role, href, cls = '', badge = '' }) {
   const corner = href ? `<span class="arrow-btn sm">${ICONS.arrow}</span>` : badge;
   return `
     <${tag} class="tile item ${cls}"${attrs}>
-      <div class="top"><span class="period">${period}</span>${corner}</div>
+      <div class="top"><span class="period">${t(period)}</span>${corner}</div>
       <div>
         <h3>${t(title)}</h3>
         ${role ? `<div class="role">${t(role)}</div>` : ''}
-        <p>${t(desc)}</p>
+        ${desc ? `<p>${t(desc)}</p>` : ''}
       </div>
     </${tag}>`;
 }
@@ -138,10 +154,10 @@ const views = {
         <img src="${MEMOJI}" alt="${L.memojiAlt}">
       </div>
 
-      <a class="tile mint stack-tile now t-n" href="https://hdi.cs.umd.edu/" target="_blank" rel="noopener">
+      <div class="tile mint stack-tile now t-n">
         <div class="top"><span class="dot"></span>Now</div>
-        <div><h3>HDI Lab</h3><div class="role">${L.nowRole}</div></div>
-      </a>
+        <div><h3>${L.nowOrg}</h3><div class="role">${L.nowRole}</div></div>
+      </div>
 
       <button class="tile dark stack-tile resume-cta t-r" data-go="resume">
         <div class="top"><span class="arrow-btn">${ICONS.arrow}</span></div>
@@ -179,6 +195,10 @@ const views = {
           <span class="label">University of Maryland · Computer Science</span>
           <div class="word">Resume</div>
         </div>
+        <button class="tile lilac stat" data-scroll="skills">
+          <span class="label">Class of</span>
+          <div><div class="num">2027</div><div class="sub">${L.statClass}</div></div>
+        </button>
         <button class="tile stat" data-scroll="experience">
           <span class="label">Experience</span>
           <div><div class="num">${experience.length}</div><div class="sub">${L.statExp}</div></div>
@@ -187,21 +207,6 @@ const views = {
           <span class="label">Projects</span>
           <div><div class="num">${projects.length + 1}</div><div class="sub">${L.statProj}</div></div>
         </button>
-        <button class="tile lilac stat" data-scroll="skills">
-          <span class="label">Class of</span>
-          <div><div class="num">2027</div><div class="sub">${L.statClass}</div></div>
-        </button>
-      </div>
-
-      <h2 class="section-title" id="projects">Projects <small>${L.secProjects}</small></h2>
-      <div class="cards-3">
-        ${item({ ...featured, period: 'Featured', cls: 'yellow', badge: `<span class="pill">${L.inProgress}</span>` })}
-        ${projects.map((p) => item(p)).join('')}
-      </div>
-
-      <h2 class="section-title" id="experience">Experience <small>${L.secExperience}</small></h2>
-      <div class="cards-2">
-        ${experience.map((e) => item({ ...e, title: e.org })).join('')}
       </div>
 
       <h2 class="section-title" id="skills">Education &amp; Skills <small>${L.secSkills}</small></h2>
@@ -212,6 +217,17 @@ const views = {
             ${skills.map(([k, v]) => `<div><span>${k}</span><strong>${v}</strong></div>`).join('')}
           </div>
         </div>
+      </div>
+
+      <h2 class="section-title" id="experience">Experience <small>${L.secExperience}</small></h2>
+      <div class="cards-2">
+        ${experience.map((e) => item({ ...e, title: e.org })).join('')}
+      </div>
+
+      <h2 class="section-title" id="projects">Projects <small>${L.secProjects}</small></h2>
+      <div class="cards-3">
+        ${item({ ...featured, period: 'Featured', cls: 'yellow', badge: `<span class="pill">${L.inProgress}</span>` })}
+        ${projects.map((p) => item(p)).join('')}
       </div>
     </section>
   `,
