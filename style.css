@@ -671,13 +671,14 @@ button.tile:hover {
   height: 100%;
 }
 
+.exp-row.c0 {
+  background: #4c5a33 url('sources/patterns/rok-army-camo.svg') repeat;
+  background-size: 288px 288px;
+}
+
+/* 위장무늬 위 글자 가독성: 좌우를 어둡게 */
 .pat-army {
-  opacity: 0.22;
-  background-image:
-    radial-gradient(circle at 20% 30%, #56633a 0 26px, transparent 27px),
-    radial-gradient(circle at 70% 70%, #3d4628 0 34px, transparent 35px),
-    radial-gradient(circle at 45% 90%, #8a9460 0 20px, transparent 21px);
-  background-size: 180px 140px;
+  background: linear-gradient(90deg, rgba(14, 16, 10, 0.72) 0%, rgba(14, 16, 10, 0.38) 45%, rgba(14, 16, 10, 0.38) 55%, rgba(14, 16, 10, 0.75) 100%);
 }
 
 .pat-hdi {
@@ -694,21 +695,33 @@ button.tile:hover {
   background-size: 28px 28px;
 }
 
-.exp-art {
-  position: absolute;
-  top: 0;
-  right: calc(34% + 64px);
-  height: 140px;
+/* 카카오모빌리티: 카카오 옐로우(#FEE500) · 카카오 블랙 + 앱 아이콘만 */
+.exp-row.c1 {
+  --sub: rgba(25, 25, 25, 0.66);
+  background: #fee500;
+  color: #191919;
 }
 
-.exp-art .art {
+.exp-row.c1 .exp-period {
+  background: rgba(25, 25, 25, 0.08);
+  color: #191919;
+}
+
+.exp-apps {
   position: absolute;
+  left: 32px;
+  top: 24px;
+  z-index: 1;
+  display: flex;
+  gap: 8px;
+}
+
+.exp-apps img {
   display: block;
-}
-
-/* 카드 폭이 좁으면 일러스트는 숨기고 무늬 · 로고만 */
-@container (max-width: 860px) {
-  .exp-art { display: none; }
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  box-shadow: 0 0 0 1.5px rgba(25, 25, 25, 0.16);
 }
 
 .exp-name,
@@ -988,7 +1001,6 @@ button.tile:hover {
 
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
-  .exp-art { right: calc(40% + 64px); }
   .proj-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: 240px repeat(3, minmax(200px, auto));
@@ -1080,6 +1092,8 @@ button.tile:hover {
   .exp-logo,
   .exp-row.c0 .exp-logo { left: auto; right: 14px; top: 14px; padding: 7px 9px; border-radius: 12px; }
   .exp-logo img { height: calc(var(--lh) * 0.78); }
+  .exp-apps { left: auto; right: 14px; top: 14px; gap: 6px; }
+  .exp-apps img { width: 30px; height: 30px; border-radius: 8px; }
   .exp-info strong { font-size: 18px; }
   .exp-info .desc { font-size: 14px; }
 

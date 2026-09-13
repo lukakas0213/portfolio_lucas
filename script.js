@@ -36,13 +36,13 @@ const experience = [
     short: { ko: '대한민국 육군', en: 'ROK Army' },
     role: { ko: '소프트웨어 개발병', en: 'Software Developer' },
     desc: { ko: '정보체계관리단', en: 'Information Systems Management Group' },
-    theme: 'army', logo: { src: 'sources/logos/army-emblem.webp', alt: '대한민국 육군 휘장', h: 32 },
+    theme: 'army',
   },
   {
     period: '2025.08 – 2025.11',
     org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
     role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
-    theme: 'kakao', logo: { src: 'sources/logos/kakaomobility.svg', alt: 'kakao mobility', h: 22 },
+    theme: 'kakao',
     desc: {
       ko: '모니터링 통합 서버 · Python 모니터링 라이브러리 개발',
       en: 'Monitoring hub server · Python monitoring library',
@@ -139,35 +139,27 @@ function fitSize(text, budget, max) {
   return `${Math.min(max, budget / em).toFixed(2)}cqi`;
 }
 
-// 경력 카드 장식용 일러스트 (100x100 SVG)
-const ART = {
-  dogtag: '<path d="M9 10 C 22 2, 40 6, 50 20" stroke="#9aa0a6" stroke-width="3" fill="none" stroke-dasharray="1 5" stroke-linecap="round"/><rect x="24" y="16" width="52" height="72" rx="16" fill="#c9ccd1" stroke="#8d9197" stroke-width="3"/><circle cx="50" cy="28" r="4.5" fill="#17161a"/><rect x="34" y="44" width="32" height="5" rx="2.5" fill="#5f646b"/><rect x="34" y="56" width="24" height="5" rx="2.5" fill="#5f646b"/><rect x="34" y="68" width="28" height="5" rx="2.5" fill="#5f646b"/>',
-  star: '<polygon points="50,8 61,38 93,38 67,57 77,89 50,70 23,89 33,57 7,38 39,38" fill="#ffd43b" stroke="#17161a" stroke-width="4" stroke-linejoin="round"/>',
-  taxi: '<rect x="42" y="14" width="16" height="10" rx="3" fill="#fff" stroke="#17161a" stroke-width="3"/><path d="M24 46 L33 28 H67 L76 46Z" fill="#17161a"/><rect x="8" y="44" width="84" height="30" rx="11" fill="#17161a"/><path d="M35 44 L40 33 H48 V44Z M52 44 V33 H60 L65 44Z" fill="#ffe14d"/><rect x="80" y="52" width="9" height="7" rx="3" fill="#ffe14d"/><circle cx="28" cy="76" r="10" fill="#17161a" stroke="#fff" stroke-width="4"/><circle cx="72" cy="76" r="10" fill="#17161a" stroke="#fff" stroke-width="4"/>',
-  pin: '<path d="M50 6 C 29 6, 17 22, 17 39 C 17 62, 50 94, 50 94 C 50 94, 83 62, 83 39 C 83 22, 71 6, 50 6Z" fill="#17161a"/><circle cx="50" cy="39" r="13" fill="#ffe14d"/>',
-  graph: '<path d="M24 30 L50 58 L78 26 M50 58 L34 80 M50 58 L74 76" stroke="#17161a" stroke-width="4" fill="none"/><circle cx="24" cy="30" r="10" fill="#7c5cff"/><circle cx="78" cy="26" r="10" fill="#ffd43b"/><circle cx="50" cy="58" r="13" fill="#17161a"/><circle cx="34" cy="80" r="8" fill="#3ec28f"/><circle cx="74" cy="76" r="8" fill="#ff7a59"/>',
-  bars: '<rect x="8" y="10" width="84" height="80" rx="16" fill="#fff"/><rect x="22" y="50" width="12" height="28" rx="4" fill="#7c5cff"/><rect x="44" y="30" width="12" height="48" rx="4" fill="#17161a"/><rect x="66" y="40" width="12" height="38" rx="4" fill="#ffd43b"/>',
-  flame: '<path d="M50 6 C 56 26, 80 36, 80 62 C 80 82, 66 94, 50 94 C 34 94, 20 82, 20 62 C 20 46, 30 38, 34 26 C 40 36, 44 40, 46 44 C 50 34, 48 20, 50 6Z" fill="#ff6b3d"/><path d="M50 46 C 54 58, 66 64, 66 76 C 66 86, 58 92, 50 92 C 42 92, 34 86, 34 76 C 34 66, 44 62, 50 46Z" fill="#ffd43b"/>',
-  exit: '<rect x="6" y="18" width="88" height="64" rx="12" fill="#1f9d55"/><circle cx="40" cy="34" r="6" fill="#fff"/><path d="M38 44 L30 58 L22 60 M38 44 L48 54 L56 50 M38 44 L36 62 L46 72 M36 62 L26 74" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M62 50 H84 M76 42 L84 50 L76 58" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
-};
+// 카카오모빌리티 앱 아이콘
+const APPS = [
+  { src: 'sources/logos/kakaot-app.webp', alt: '카카오 T' },
+  { src: 'sources/logos/kakaonavi-app.webp', alt: '카카오내비' },
+  { src: 'sources/logos/kakaomap-app.webp', alt: '카카오맵' },
+];
 
-// 테마별 배경 무늬 + 일러스트 배치 [이름, 크기, x, y, 회전]
+// 테마별 배경 무늬 (육군 위장무늬 · HDI 점 · 안국 격자 · 카카오는 무늬 없이 브랜드 컬러만)
 const DECO = {
-  army: { pattern: '<div class="pat pat-army"></div>', width: 190, art: [['dogtag', 116, 0, -26, -14], ['star', 56, 130, 20, 12]] },
-  kakao: {
-    pattern: '<svg class="pat" viewBox="0 0 1000 210" preserveAspectRatio="none"><path d="M-10 170 C 180 170, 220 60, 420 80 S 700 190, 1010 40" stroke="#17161a" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round" fill="none" opacity="0.35" vector-effect="non-scaling-stroke"/></svg>',
-    width: 214, art: [['taxi', 116, 0, -22, -6], ['pin', 64, 150, -2, 12]],
-  },
-  hdi: { pattern: '<div class="pat pat-hdi"></div>', width: 200, art: [['graph', 116, 0, -22, 10], ['bars', 70, 130, 12, -10]] },
-  ankug: { pattern: '<div class="pat pat-ankug"></div>', width: 200, art: [['flame', 110, 0, -24, -10], ['exit', 70, 130, 10, 8]] },
+  army: { pattern: '<div class="pat pat-army"></div>' },
+  kakao: { pattern: '', apps: APPS },
+  hdi: { pattern: '<div class="pat pat-hdi"></div>' },
+  ankug: { pattern: '<div class="pat pat-ankug"></div>' },
 };
 
 function expDeco(e) {
   const d = DECO[e.theme];
   if (!d) return '';
-  const art = d.art.map(([name, size, x, y, rot]) =>
-    `<svg class="art" viewBox="0 0 100 100" style="width: ${size}px; height: ${size}px; left: ${x}px; top: ${y}px; transform: rotate(${rot}deg)">${ART[name]}</svg>`).join('');
-  return `<div class="exp-deco" aria-hidden="true">${d.pattern}<div class="exp-art" style="width: ${d.width}px">${art}</div></div>`;
+  const pattern = d.pattern ? `<div class="exp-deco" aria-hidden="true">${d.pattern}</div>` : '';
+  const apps = d.apps ? `<div class="exp-apps">${d.apps.map((a) => `<img src="${a.src}" alt="${a.alt}" title="${a.alt}">`).join('')}</div>` : '';
+  return pattern + apps;
 }
 
 // Resume 경력 줄: 회사 이름을 크게, 오른쪽에 역할 · 기간 · 한 줄 설명
