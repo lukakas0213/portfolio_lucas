@@ -229,7 +229,7 @@ button.tile:hover {
   grid-template-areas:
     "h1 h1 p n"
     "h2 h2 p r"
-    "l  l  s c";
+    "l  l  c c";
   gap: var(--gap);
 }
 
@@ -239,10 +239,28 @@ button.tile:hover {
 .t-n  { grid-area: n; }
 .t-r  { grid-area: r; }
 .t-l  { grid-area: l; display: flex; align-items: center; padding: 32px 36px; }
-.t-s  { grid-area: s; }
-.t-c  { grid-area: c; }
+.t-c  { grid-area: c; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); }
 
-.t-h1 .label { padding: 0 32px; }
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 32px;
+}
+
+.info strong {
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.info span {
+  font-family: var(--kr);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--body);
+}
 
 .t-h1 .word,
 .t-h2 .word {
@@ -257,7 +275,7 @@ button.tile:hover {
 
 .t-p .name {
   padding: 0 28px;
-  font-size: 26px;
+  font-size: 30px;
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -279,12 +297,12 @@ button.tile:hover {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 26px;
+  padding: 28px;
 }
 
 .stack-tile h3 {
   margin: 0;
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -301,13 +319,18 @@ button.tile:hover {
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
+  font-family: var(--kr);
+  font-size: 16px;
+  font-weight: 700;
   color: var(--mint-ink);
 }
 
-.resume-cta h3 {
-  font-size: 40px;
+.now .role {
+  margin-top: 6px;
+  font-family: var(--kr);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--mint-ink);
 }
 
 .resume-cta .top {
@@ -333,45 +356,56 @@ button.tile:hover {
   background: var(--yellow);
 }
 
-.tech {
+/* Contact: GitHub · LinkedIn · Email 각각 타일 */
+.contact {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "icon arrow"
+    "text text";
+  padding: 24px;
+  height: 100%;
+  width: 100%;
 }
 
-.tech span {
-  display: grid;
-  place-items: center;
-  height: 44px;
-  border-radius: 14px;
-  background: var(--bg);
-  font-size: 14px;
-  font-weight: 600;
-}
+.contact .c-icon { grid-area: icon; display: flex; }
+.contact .c-icon .icon { width: 34px; height: 34px; }
+.contact .c-arrow { grid-area: arrow; display: flex; transition: transform 0.35s cubic-bezier(.2, .8, .2, 1); }
+.contact .c-arrow .icon { width: 22px; height: 22px; }
+.contact:hover .c-arrow { transform: rotate(45deg); }
 
-.socials {
+.contact .c-text {
+  grid-area: text;
+  align-self: end;
   display: flex;
-  gap: 8px;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
 }
 
-.socials a,
-.socials button {
-  display: grid;
-  place-items: center;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: #ffffff;
-  transition: transform 0.25s, background 0.25s, color 0.25s;
+.contact strong {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
-.socials a:hover,
-.socials button:hover {
-  transform: translateY(-3px);
-  background: var(--yellow);
-  color: var(--ink);
+.contact .c-text span {
+  font-family: var(--kr);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
+.contact.dark .c-text span { color: rgba(255, 255, 255, 0.72); }
+.contact.yellow { color: var(--yellow-ink); }
+.contact.yellow .c-text span { color: var(--yellow-ink); }
+
+.contact.linkedin { background: #0a66c2; color: #ffffff; }
+.contact.linkedin .c-text span { color: rgba(255, 255, 255, 0.8); }
 
 /* ---------- Resume ---------- */
 .resume-head {
@@ -611,14 +645,14 @@ button.tile:hover {
 
   .bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: 200px 200px 260px 200px 200px 200px;
+    grid-template-rows: 300px 200px 260px 200px 200px 210px;
     grid-template-areas:
       "h1 h1"
       "h2 h2"
       "p  r"
       "p  n"
       "l  l"
-      "s  c";
+      "c  c";
   }
 
   .t-h1 .word,
@@ -648,27 +682,41 @@ button.tile:hover {
   .content { padding: 0 16px 40px; }
 
   .bento {
-    grid-template-rows: 150px 150px 220px 150px 170px auto;
+    grid-template-rows: 190px 150px 220px 170px 150px auto;
     grid-template-areas:
       "h1 h1"
       "h2 h2"
       "p  r"
+      "n  n"
       "l  l"
-      "n  c"
-      "s  s";
+      "c  c";
   }
 
   .t-h1 { padding-top: 20px; }
-  .t-h1 .label { padding: 0 22px; font-size: 13px; }
+  .info { padding: 0 22px; }
+  .info strong { font-size: 21px; }
+  .info span { font-size: 15px; }
   .t-h1 .word, .t-h2 .word { padding: 0 16px; }
   .t-p { padding-top: 18px; }
-  .t-p .name { padding: 0 18px; font-size: 18px; }
+  .t-p .name { padding: 0 18px; font-size: 20px; }
   .t-l { padding: 20px 22px; }
   .stack-tile, .board-empty { padding: 18px; }
   .stack-tile h3 { font-size: 26px; }
-  .resume-cta h3 { font-size: 30px; }
+  .now .role { font-size: 15px; }
   .arrow-btn { width: 44px; height: 44px; }
-  .socials a, .socials button { width: 44px; height: 44px; }
+  .t-c { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .contact {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: auto;
+    grid-template-areas: "icon text arrow";
+    align-items: center;
+    column-gap: 14px;
+    height: 76px;
+    padding: 0 18px;
+  }
+  .contact .c-icon .icon { width: 26px; height: 26px; }
+  .contact .c-text { align-self: center; gap: 2px; }
+  .contact strong { font-size: 18px; }
 
   .t-title { height: 170px; padding-top: 20px; }
   .t-title .label { padding: 0 22px; font-size: 13px; }
@@ -686,6 +734,61 @@ button.tile:hover {
   .item h3 { font-size: 20px; }
   .skills div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .skills strong { font-size: 16px; }
+}
+
+/* ---------- 언어 전환 ---------- */
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  grid-template-areas: "brand tabs lang";
+  align-items: center;
+  column-gap: 10px;
+}
+
+.brand { grid-area: brand; }
+.tabs { grid-area: tabs; }
+.lang { grid-area: lang; }
+
+.lang {
+  display: flex;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--tile);
+}
+
+.lang button {
+  height: 40px;
+  min-width: 44px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+}
+
+.lang button:hover {
+  color: var(--ink);
+}
+
+.lang button[aria-pressed="true"] {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .topbar {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand lang"
+      "tabs  tabs";
+    row-gap: 10px;
+  }
+
+  .brand { text-align: left; }
+  .lang button { height: 36px; min-width: 40px; padding: 0 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
