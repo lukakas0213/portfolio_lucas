@@ -655,6 +655,95 @@ button.tile:hover {
   word-break: keep-all;
 }
 
+/* 경력 카드 장식: 배경 무늬 · 일러스트 · 로고 이름표 */
+.exp-deco {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.exp-deco .pat {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pat-army {
+  opacity: 0.22;
+  background-image:
+    radial-gradient(circle at 20% 30%, #56633a 0 26px, transparent 27px),
+    radial-gradient(circle at 70% 70%, #3d4628 0 34px, transparent 35px),
+    radial-gradient(circle at 45% 90%, #8a9460 0 20px, transparent 21px);
+  background-size: 180px 140px;
+}
+
+.pat-hdi {
+  opacity: 0.35;
+  background-image: radial-gradient(#7c5cff 1.6px, transparent 1.7px);
+  background-size: 22px 22px;
+}
+
+.pat-ankug {
+  opacity: 0.4;
+  background-image:
+    linear-gradient(rgba(29, 79, 143, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29, 79, 143, 0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.exp-art {
+  position: absolute;
+  top: 0;
+  right: calc(34% + 64px);
+  height: 140px;
+}
+
+.exp-art .art {
+  position: absolute;
+  display: block;
+}
+
+/* 카드 폭이 좁으면 일러스트는 숨기고 무늬 · 로고만 */
+@container (max-width: 860px) {
+  .exp-art { display: none; }
+}
+
+.exp-name,
+.exp-info {
+  position: relative;
+  z-index: 1;
+}
+
+.exp-now { z-index: 1; }
+
+.exp-logo {
+  position: absolute;
+  left: 32px;
+  top: 22px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.exp-logo img {
+  display: block;
+  width: auto;
+  height: var(--lh);
+}
+
+.exp-row.c0 .exp-logo {
+  left: 112px;
+  top: 14px;
+  padding: 6px 9px;
+}
+
 /* Projects: 대표 프로젝트 + 작은 타일 */
 .proj-bento {
   display: grid;
@@ -899,6 +988,7 @@ button.tile:hover {
 
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
+  .exp-art { right: calc(40% + 64px); }
   .proj-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: 240px repeat(3, minmax(200px, auto));
@@ -983,10 +1073,13 @@ button.tile:hover {
     min-height: 190px;
     padding: 20px 20px 22px;
   }
-  .exp-now { position: static; order: 0; font-size: 14px; }
+  .exp-now { position: static; order: 0; align-self: flex-start; font-size: 14px; }
   .exp-info { order: 1; align-self: stretch; align-items: flex-start; width: auto; text-align: left; gap: 4px; }
   .exp-name { order: 2; font-size: var(--nm); }
   .exp-period { height: 28px; }
+  .exp-logo,
+  .exp-row.c0 .exp-logo { left: auto; right: 14px; top: 14px; padding: 7px 9px; border-radius: 12px; }
+  .exp-logo img { height: calc(var(--lh) * 0.78); }
   .exp-info strong { font-size: 18px; }
   .exp-info .desc { font-size: 14px; }
 
