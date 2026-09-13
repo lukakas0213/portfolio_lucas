@@ -14,32 +14,18 @@ const I18N = {
     memojiAlt: '박동혁 미모지',
     copyEmail: '이메일 주소 복사',
     copied: (email) => `${email} 복사됨`,
-    secProjects: '프로젝트',
-    secExperience: '경력',
-    secSkills: '학력 · 기술',
-    statExp: '경력',
-    statProj: '프로젝트',
-    statClass: '졸업 예정',
+    githubMore: 'GitHub에서 더 보기',
     inProgress: '진행 중',
     boardSoon: '게시판은<br>준비 중이에요.',
-    nowOrg: '대한민국 육군',
-    nowRole: '소프트웨어 개발병',
   },
   en: {
     mission: 'Turning <mark>data</mark> into insight,<br>and tech into <mark class="y">better days</mark>.',
     memojiAlt: 'Donghyeok Park memoji',
     copyEmail: 'Copy email address',
     copied: (email) => `Copied ${email}`,
-    secProjects: '',
-    secExperience: '',
-    secSkills: '',
-    statExp: 'Roles',
-    statProj: 'Projects',
-    statClass: 'Expected',
+    githubMore: 'More on GitHub',
     inProgress: 'In progress',
     boardSoon: 'The board is<br>coming soon.',
-    nowOrg: 'ROK Army',
-    nowRole: 'Software Developer',
   },
 };
 
@@ -47,6 +33,7 @@ const experience = [
   {
     period: { ko: '2026.03 – 현재', en: '2026.03 – Present' },
     org: { ko: '대한민국 육군', en: 'Republic of Korea Army' },
+    short: { ko: '대한민국 육군', en: 'ROK Army' },
     role: { ko: '소프트웨어 개발병', en: 'Software Developer' },
   },
   {
@@ -54,13 +41,14 @@ const experience = [
     org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
     role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
     desc: {
-      ko: 'Spring Boot 기반 모니터링 통합 서버와 Prometheus 메트릭·로그 수집 Python 라이브러리 개발',
-      en: 'Built a Spring Boot monitoring hub and a Python library that ships Prometheus metrics and logs',
+      ko: '모니터링 통합 서버 · Python 모니터링 라이브러리 개발',
+      en: 'Monitoring hub server · Python monitoring library',
     },
   },
   {
     period: '2025.02 – 2025.05', href: 'https://hdi.cs.umd.edu/',
     org: { ko: 'Human Data Interaction Lab', en: 'Human Data Interaction Lab' },
+    short: 'HDI Lab',
     role: { ko: '학부 연구생 · UMD', en: 'Undergraduate Researcher · UMD' },
     desc: { ko: '데이터 시각화 구조 분석 웹 툴 VisAnatomy 개발', en: 'Built VisAnatomy, a web tool for analyzing visualization structure' },
   },
@@ -121,21 +109,58 @@ if (!I18N[lang]) lang = 'ko';
 
 const t = (value) => (value && typeof value === 'object' ? value[lang] : value);
 
-// 링크가 있으면 카드 전체가 새 탭 링크, 없으면 일반 타일
-function item({ period, title, desc, role, href, cls = '', badge = '' }) {
-  const tag = href ? 'a' : 'div';
-  const attrs = href ? ` href="${href}" target="_blank" rel="noopener"` : '';
-  const corner = href ? `<span class="arrow-btn sm">${ICONS.arrow}</span>` : badge;
+// 같은 해 기간은 '2025.08 – 11'처럼 줄여서 표시
+const shortPeriod = (period) => t(period).replace(/(\d{4})\.(\d{2}) – \1\.(\d{2})/, '$1.$2 – $3');
+
+// About의 Now 타일: 가장 최근 경력 + 이전 경력 미니 타임라인
+function nowTile() {
+  const [current, ...previous] = experience;
   return `
-    <${tag} class="tile item ${cls}"${attrs}>
-      <div class="top"><span class="period">${t(period)}</span>${corner}</div>
-      <div>
-        <h3>${t(title)}</h3>
-        ${role ? `<div class="role">${t(role)}</div>` : ''}
-        ${desc ? `<p>${t(desc)}</p>` : ''}
+    <div class="tile mint stack-tile now t-n">
+      <div class="top">
+        <span class="badge"><span class="dot"></span>Now</span>
+        <span class="when">${shortPeriod(current.period)}</span>
+      </div>
+      <div class="current"><strong>${t(current.short || current.org)}</strong><span>${t(current.role)}</span></div>
+      <ul class="now-list">
+        ${previous.map((e) => `<li><b>${t(e.short || e.org)}</b><small>${shortPeriod(e.period)}</small></li>`).join('')}
+      </ul>
+    </div>`;
+}
+
+// 글자 폭(한글 ≈ 1em, 영문 ≈ 0.6em)을 어림해서 타일 폭 안에 들어가는 글자 크기(cqi) 계산
+function fitSize(text, budget, max) {
+  const em = [...text].reduce((sum, ch) => sum + (/[ㄱ-힝]/.test(ch) ? 0.98 : ch === ' ' ? 0.3 : 0.62), 0);
+  return `${Math.min(max, budget / em).toFixed(2)}cqi`;
+}
+
+// Resume 경력 줄: 회사 이름을 크게, 오른쪽에 역할 · 기간 · 한 줄 설명
+function expRow(e, i) {
+  const name = t(e.short || e.org);
+  const tag = e.href ? 'a' : 'div';
+  const attrs = e.href ? ` href="${e.href}" target="_blank" rel="noopener"` : '';
+  return `
+    <${tag} class="tile exp-row c${i % 4}"${attrs}>
+      ${i === 0 ? '<div class="exp-now"><span class="dot"></span>Now</div>' : ''}
+      <div class="exp-name" style="--nd: ${fitSize(name, 54, 9)}; --nm: ${fitSize(name, 88, 15)}">${name}</div>
+      <div class="exp-info">
+        <span class="exp-period">${t(e.period)}</span>
+        <strong>${t(e.role)}</strong>
+        ${e.desc ? `<span class="desc">${t(e.desc)}</span>` : ''}
       </div>
     </${tag}>`;
 }
+
+function projTile(p, i) {
+  return `
+    <a class="tile proj p${i + 1}" href="${p.href}" target="_blank" rel="noopener">
+      <div class="top"><span class="period">${p.period}</span><span class="arrow-btn sm">${ICONS.arrow}</span></div>
+      <div><h3>${t(p.title)}</h3><p>${t(p.desc)}</p></div>
+    </a>`;
+}
+
+// Resume 섹션 레일: 섹션 이름만
+const rail = (title) => `<div class="rail"><h2>${title}</h2></div>`;
 
 const views = {
   about: (L) => `
@@ -154,10 +179,7 @@ const views = {
         <img src="${MEMOJI}" alt="${L.memojiAlt}">
       </div>
 
-      <div class="tile mint stack-tile now t-n">
-        <div class="top"><span class="dot"></span>Now</div>
-        <div><h3>${L.nowOrg}</h3><div class="role">${L.nowRole}</div></div>
-      </div>
+      ${nowTile()}
 
       <button class="tile dark stack-tile resume-cta t-r" data-go="resume">
         <div class="top"><span class="arrow-btn">${ICONS.arrow}</span></div>
@@ -190,44 +212,43 @@ const views = {
 
   resume: (L) => `
     <section>
-      <div class="resume-head">
-        <div class="tile t-title">
-          <span class="label">University of Maryland · Computer Science</span>
-          <div class="word">Resume</div>
-        </div>
-        <button class="tile lilac stat" data-scroll="skills">
-          <span class="label">Class of</span>
-          <div><div class="num">2027</div><div class="sub">${L.statClass}</div></div>
-        </button>
-        <button class="tile stat" data-scroll="experience">
-          <span class="label">Experience</span>
-          <div><div class="num">${experience.length}</div><div class="sub">${L.statExp}</div></div>
-        </button>
-        <button class="tile yellow stat" data-scroll="projects">
-          <span class="label">Projects</span>
-          <div><div class="num">${projects.length + 1}</div><div class="sub">${L.statProj}</div></div>
-        </button>
-      </div>
-
-      <h2 class="section-title" id="skills">Education &amp; Skills <small>${L.secSkills}</small></h2>
-      <div class="cards-3 edu-grid">
-        ${item({ period: '2023 – 2027.05', title: 'University of Maryland', desc: 'B.S. Computer Science', cls: 'lilac' })}
-        <div class="tile item">
-          <div class="skills">
-            ${skills.map(([k, v]) => `<div><span>${k}</span><strong>${v}</strong></div>`).join('')}
+      <div class="sec sec-edu">
+        ${rail('Education')}
+        <div class="sec-body">
+          <div class="edu-row">
+            <div class="tile lilac edu">
+              <div class="top"><span class="label">Education</span><span class="pill">2023 – 2027.05</span></div>
+              <div><h3>University of Maryland</h3><p>B.S. Computer Science</p></div>
+            </div>
+            <div class="tile skills-tile">
+              ${skills.map(([k, v]) => `<div><span>${k}</span><strong>${v}</strong></div>`).join('')}
+            </div>
           </div>
         </div>
       </div>
 
-      <h2 class="section-title" id="experience">Experience <small>${L.secExperience}</small></h2>
-      <div class="cards-2">
-        ${experience.map((e) => item({ ...e, title: e.org })).join('')}
+      <div class="sec sec-exp">
+        ${rail('Experience')}
+        <div class="sec-body">
+          <div class="exp-list">${experience.map(expRow).join('')}</div>
+        </div>
       </div>
 
-      <h2 class="section-title" id="projects">Projects <small>${L.secProjects}</small></h2>
-      <div class="cards-3">
-        ${item({ ...featured, period: 'Featured', cls: 'yellow', badge: `<span class="pill">${L.inProgress}</span>` })}
-        ${projects.map((p) => item(p)).join('')}
+      <div class="sec sec-proj">
+        ${rail('Projects')}
+        <div class="sec-body">
+          <div class="proj-bento">
+            <div class="tile yellow proj-featured pf">
+              <div class="top"><span class="label">Featured</span><span class="pill">${L.inProgress}</span></div>
+              <div><h3>${t(featured.title)}</h3><p>${t(featured.desc)}</p></div>
+            </div>
+            ${projects.map((p, i) => projTile(p, i)).join('')}
+            <a class="tile dark proj-gh gh" href="https://github.com/lukakas0213" target="_blank" rel="noopener">
+              <div class="top">${ICONS.github}<span class="c-arrow">${ICONS.arrow}</span></div>
+              <div><h3>${L.githubMore}</h3><span>@lukakas0213</span></div>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   `,
@@ -297,9 +318,6 @@ async function copyEmail() {
 content.addEventListener('click', (e) => {
   const go = e.target.closest('[data-go]');
   if (go) show(go.dataset.go, true);
-
-  const target = e.target.closest('[data-scroll]');
-  if (target) document.getElementById(target.dataset.scroll)?.scrollIntoView({ behavior: 'smooth' });
 
   if (e.target.closest('[data-copy-email]')) copyEmail();
 });
