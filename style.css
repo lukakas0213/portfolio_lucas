@@ -1673,38 +1673,35 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
 
   .sec { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .sec + .sec { margin-top: 48px; }
-  /* 섹션 헤더: 스크롤하는 동안 상단 바 바로 아래에 고정 (위쪽 틈은 배경색으로 가림) */
+  /* 섹션 헤더: 상단 바 바로 밑에 붙는 꽉 찬 띠 + 얇은 구분선 (카드는 곧은 선 아래로 사라짐) */
   .rail {
     position: sticky;
     top: var(--topbar-h, 80px);
     z-index: 15;
+    display: flex;
+    align-items: center;
+    height: 52px;
     margin: 0 -32px;
-    padding: 8px 32px 12px;
+    padding: 0 32px;
     background: var(--bg);
+    border-bottom: 1px solid rgba(23, 22, 26, 0.1);
   }
-  .rail::before { display: none; }
-  /* 헤더 아래로 들어가는 카드가 칼로 자른 듯 보이지 않게 부드럽게 사라지는 띠 */
-  .rail::after {
+  .rail::before {
     content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 100%;
-    height: 24px;
-    background: linear-gradient(var(--bg), color-mix(in srgb, var(--bg) 0%, transparent));
-    pointer-events: none;
+    position: static;
+    flex: none;
+    width: 12px;
+    height: 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background: var(--bar);
   }
   .rail h2 {
     position: static;
-    display: flex;
-    align-items: center;
-    height: 56px;
-    padding: 0 8px 0 20px;
-    border-radius: 999px;
-    background: var(--bar);
-    box-shadow: 0 6px 18px rgba(23, 22, 26, 0.08);
-    font-size: 24px;
+    padding: 0;
+    font-size: 22px;
   }
+  .sec-body { padding-top: 14px; }
 
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
@@ -1798,8 +1795,8 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .shots { grid-template-columns: minmax(0, 1fr); }
   .detail th, .detail td { padding: 10px; font-size: 14px; }
 
-  .rail { margin: 0 -16px; padding: 8px 16px 12px; }
-  .rail h2 { font-size: 22px; }
+  .rail { margin: 0 -16px; padding: 0 16px; height: 48px; }
+  .rail h2 { font-size: 20px; }
   .exp-row {
     flex-direction: column;
     align-items: stretch;
