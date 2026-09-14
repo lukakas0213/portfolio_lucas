@@ -470,14 +470,17 @@ button.tile:hover {
 
 .mission {
   font-family: var(--kr);
-  font-size: clamp(22px, 2.2vw, 32px);
+  font-size: clamp(30px, 9.6cqi, 58px);
   font-weight: 800;
-  line-height: 1.45;
-  letter-spacing: -0.04em;
+  line-height: 1.32;
+  letter-spacing: -0.045em;
 }
 
+/* 배경이 줄 간격을 넘지 않도록 강조 높이를 글자에 맞춤 */
 .mission mark {
-  padding: 0 8px;
+  display: inline-block;
+  line-height: 1.12;
+  padding: 0 0.16em;
   border-radius: 999px;
   color: inherit;
   background: var(--mint);

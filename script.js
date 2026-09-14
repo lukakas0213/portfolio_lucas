@@ -10,7 +10,7 @@ const ICONS = {
 
 const I18N = {
   ko: {
-    mission: '데이터를 <mark>인사이트</mark>로,<br>기술로 일상을 <mark class="y">더 낫게</mark>.',
+    mission: '<mark>아이디어</mark>를<br><mark class="y">코드</mark>로.',
     memojiAlt: '박동혁 미모지',
     copyEmail: '이메일 주소 복사',
     copied: (email) => `${email} 복사됨`,
@@ -26,7 +26,7 @@ const I18N = {
     boardSoon: '게시판은<br>준비 중이에요.',
   },
   en: {
-    mission: 'Turning <mark>data</mark> into insight,<br>and tech into <mark class="y">better days</mark>.',
+    mission: 'Turning <mark>ideas</mark><br>into <mark class="y">code</mark>.',
     memojiAlt: 'Donghyeok Park memoji',
     copyEmail: 'Copy email address',
     copied: (email) => `Copied ${email}`,
