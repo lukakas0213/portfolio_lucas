@@ -919,10 +919,17 @@ button.tile:hover {
   transition: opacity 0.3s ease;
 }
 
-.exp-row.open .exp-actions {
+.exp-row.open .exp-actions,
+.exp-toggle.open .exp-actions {
   opacity: 1;
   pointer-events: auto;
 }
+
+/* 학교 카드도 같은 방식: 흰 바탕 위 Maryland Red 강조 */
+.exp-toggle { cursor: pointer; }
+.exp-toggle:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.edu { --row-bg: #ffffff; --solid-bg: #e21833; --solid-fg: #ffffff; }
+.edu > .exp-actions { position: absolute; z-index: 4; }
 
 .half {
   display: flex;

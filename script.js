@@ -483,8 +483,11 @@ const views = {
         ${rail('Education')}
         <div class="sec-body">
           <div class="edu-row">
-            <div class="tile edu">
+            <div class="tile edu exp-toggle" tabindex="0" role="button" aria-expanded="false">
               <img class="edu-flag" src="sources/patterns/maryland-flag.svg" alt="">
+              <div class="exp-actions">
+                <a class="half" href="https://umd.edu" target="_blank" rel="noopener"><span class="half-top"><small>${L.expSite}</small>${EXT_ICON}</span><strong>umd.edu</strong></a>
+              </div>
               <div class="top"><span class="edu-eyebrow">Education</span><span class="edu-years">2023 – 2027.05</span></div>
               <div>
                 <h3>University of Maryland</h3>
@@ -674,7 +677,7 @@ async function copyEmail() {
 }
 
 function setExpOpen(row, open) {
-  content.querySelectorAll('.exp-row.open').forEach((r) => {
+  content.querySelectorAll('.exp-row.open, .exp-toggle.open').forEach((r) => {
     r.classList.remove('open');
     r.setAttribute('aria-expanded', 'false');
   });
@@ -690,12 +693,12 @@ content.addEventListener('click', (e) => {
 
   if (e.target.closest('[data-copy-email]')) copyEmail();
 
-  const row = e.target.closest('.exp-row');
+  const row = e.target.closest('.exp-row, .exp-toggle');
   if (row && !row.classList.contains('exp-hero') && !e.target.closest('.exp-actions a')) setExpOpen(row, !row.classList.contains('open'));
 });
 
 content.addEventListener('keydown', (e) => {
-  const row = e.target.closest('.exp-row');
+  const row = e.target.closest('.exp-row, .exp-toggle');
   if (row && e.target === row && (e.key === 'Enter' || e.key === ' ')) {
     e.preventDefault();
     setExpOpen(row, !row.classList.contains('open'));
@@ -704,7 +707,7 @@ content.addEventListener('keydown', (e) => {
 
 // 카드 밖을 누르거나 Esc로 닫기
 document.addEventListener('click', (e) => {
-  if (!e.target.closest('.exp-row')) setExpOpen(null, false);
+  if (!e.target.closest('.exp-row, .exp-toggle')) setExpOpen(null, false);
 });
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') setExpOpen(null, false);
