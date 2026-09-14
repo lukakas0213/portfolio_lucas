@@ -1340,6 +1340,20 @@ button.tile:hover {
   letter-spacing: -0.03em;
 }
 
+/* Board 준비 중 배지 (About Now 타일과 클래스 공유하지 않도록 따로 지정) */
+.board-empty .now {
+  padding: 0;
+}
+
+.board-empty .now .top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mint-ink);
+}
+
 /* ---------- 토스트 ---------- */
 .toast {
   position: fixed;

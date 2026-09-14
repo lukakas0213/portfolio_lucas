@@ -11,6 +11,8 @@ const ICONS = {
 const I18N = {
   ko: {
     mission: '<mark>아이디어</mark>를<br><mark class="y">코드</mark>로.',
+    name: '박동혁',
+    nameCard: '박동혁',
     memojiAlt: '박동혁 미모지',
     copyEmail: '이메일 주소 복사',
     copied: (email) => `${email} 복사됨`,
@@ -27,7 +29,9 @@ const I18N = {
   },
   en: {
     mission: 'Turning <mark>ideas</mark><br>into <mark class="y">code</mark>.',
-    memojiAlt: 'Donghyeok Park memoji',
+    name: 'Donghyeok (Lucas) Park',
+    nameCard: 'Donghyeok<br>(Lucas) Park',
+    memojiAlt: 'Donghyeok (Lucas) Park memoji',
     copyEmail: 'Copy email address',
     copied: (email) => `Copied ${email}`,
     githubMore: 'More on GitHub',
@@ -320,7 +324,7 @@ const views = {
       <div class="tile yellow t-h2"><div class="word">Engineer</div></div>
 
       <div class="tile lilac t-p">
-        <div class="name">Donghyeok<br>Park</div>
+        <div class="name">${L.nameCard}</div>
         <img src="${MEMOJI}" alt="${L.memojiAlt}">
       </div>
 
@@ -449,7 +453,7 @@ const views = {
   board: (L) => `
     <section class="board">
       <div class="tile t-title">
-        <span class="label">Donghyeok Park</span>
+        <span class="label">${L.name}</span>
         <div class="word">Board</div>
       </div>
       <div class="tile mint board-empty">
@@ -486,6 +490,7 @@ function setLang(next) {
     // 저장 불가 환경에서는 이번 방문 동안만 유지
   }
   document.documentElement.lang = next;
+  document.title = `${I18N[next].name} · Portfolio`;
   langButtons.forEach((btn) => btn.setAttribute('aria-pressed', btn.dataset.lang === next));
   show(currentTab());
 }
