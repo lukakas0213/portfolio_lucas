@@ -68,7 +68,7 @@ const experience = [
     short: { ko: '대한민국 육군', en: 'ROK Army' },
     role: { ko: '소프트웨어 개발병', en: 'Software Engineer' },
     desc: { ko: '정보체계관리단', en: 'Information Systems Management Group' },
-    theme: 'army', site: 'https://www.army.mil.kr/sites/army/index.do',
+    theme: 'army', site: 'https://namu.wiki/w/Arvis',
     about: {
       ko: '정보체계관리단에서 소프트웨어 개발병으로 복무하고 있습니다.',
       en: 'Serving as a software engineer in the Information Systems Management Group.',
