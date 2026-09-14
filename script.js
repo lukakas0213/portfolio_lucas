@@ -196,13 +196,8 @@ const skills = [
   ['Tools', 'Git, Docker, PostgreSQL, Airflow, Playwright, Selenium'],
 ];
 
-let lang = 'ko';
-try {
-  lang = localStorage.getItem('lang') || (navigator.language.startsWith('ko') ? 'ko' : 'en');
-} catch {
-  lang = navigator.language.startsWith('ko') ? 'ko' : 'en';
-}
-if (!I18N[lang]) lang = 'ko';
+// 항상 영어로 시작, KO/EN 선택은 저장하지 않음
+let lang = 'en';
 
 const t = (value) => (value && typeof value === 'object' ? value[lang] : value);
 
@@ -484,11 +479,6 @@ function show(name, scroll) {
 
 function setLang(next) {
   lang = next;
-  try {
-    localStorage.setItem('lang', next);
-  } catch {
-    // 저장 불가 환경에서는 이번 방문 동안만 유지
-  }
   document.documentElement.lang = next;
   document.title = `${I18N[next].name} · Portfolio`;
   langButtons.forEach((btn) => btn.setAttribute('aria-pressed', btn.dataset.lang === next));
