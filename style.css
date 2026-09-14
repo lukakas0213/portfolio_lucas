@@ -837,21 +837,28 @@ button.tile:hover {
   color: #191919;
 }
 
-.exp-apps {
+.kakao-bg {
   position: absolute;
-  left: 32px;
-  top: 24px;
-  z-index: 1;
-  display: flex;
-  gap: 8px;
+  inset: 0;
 }
 
-.exp-apps img {
-  display: block;
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  box-shadow: 0 0 0 1.5px rgba(25, 25, 25, 0.16);
+.kakao-bg img {
+  position: absolute;
+  height: auto;
+  border-radius: 23%;
+}
+
+.kb-kakaot { left: 300px; top: -60px; width: 230px; transform: rotate(-14deg); opacity: 0.14; }
+.kb-kakaonavi { left: 520px; top: 70px; width: 170px; transform: rotate(10deg); opacity: 0.12; }
+.kb-kakaomap { left: 190px; top: 120px; width: 140px; transform: rotate(16deg); opacity: 0.12; }
+
+/* 넓은 카드: 택시 지붕이 잘리지 않게 조금 내림 */
+.exp-row.c1 .exp-art { top: 6px; }
+
+/* 카드가 좁아도 택시는 보이게: 왼쪽 위 빈 공간으로 */
+@container (max-width: 860px) {
+  .exp-row.c1 .exp-art { display: block; top: 12px; left: 28px; right: auto; }
+  .exp-row.c1 .exp-art .taxi { width: 84px; height: 84px; }
 }
 
 .exp-name,
@@ -1673,6 +1680,13 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
 
   .sec { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .sec + .sec { margin-top: 48px; }
+  /* 섹션 헤더가 붙는 화면에선 상단 바도 같은 불투명 배경으로 (반투명이면 두 띠가 달라 보임) */
+  .topbar {
+    background: var(--bg);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   /* 섹션 헤더: 상단 바 바로 밑에 붙는 꽉 찬 띠 + 얇은 구분선 (카드는 곧은 선 아래로 사라짐) */
   .rail {
     position: sticky;
@@ -1706,6 +1720,8 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
   .exp-art { right: calc(40% + 64px); }
+  .exp-row.c1 .exp-art { display: block; top: 12px; left: 28px; right: auto; }
+  .exp-row.c1 .exp-art .taxi { width: 84px; height: 84px; }
   .proj-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: 240px repeat(4, minmax(200px, auto));
@@ -1822,8 +1838,12 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
     -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, #000 65%);
     mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, #000 65%);
   }
-  .exp-apps { left: auto; right: 14px; top: 14px; gap: 6px; }
-  .exp-apps img { width: 30px; height: 30px; border-radius: 8px; }
+  .kb-kakaot { left: auto; right: -40px; top: -30px; width: 150px; }
+  .kb-kakaomap { left: auto; right: 60px; top: 110px; width: 110px; }
+  .kb-kakaonavi { left: auto; right: 150px; top: 150px; width: 70px; }
+  .exp-row.c1 .exp-art { top: 10px; left: auto; right: 14px; }
+  .exp-row.c1 .exp-art .taxi { width: 64px; height: 64px; }
+  .exp-row.c1 .exp-info { padding-right: 64px; }
   .exp-info strong { font-size: 18px; }
   .exp-info .desc { font-size: 14px; }
 
