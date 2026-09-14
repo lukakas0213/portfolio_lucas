@@ -590,7 +590,7 @@ button.tile:hover {
 
 .rail h2 {
   position: sticky;
-  top: 104px;
+  top: calc(var(--topbar-h, 92px) + 12px);
   margin: 0;
   padding-top: 4px;
   font-size: 36px;
@@ -1673,16 +1673,27 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
 
   .sec { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .sec + .sec { margin-top: 48px; }
+  /* 섹션 헤더: 스크롤하는 동안 상단 바 바로 아래에 고정 (위쪽 틈은 배경색으로 가림) */
   .rail {
+    position: sticky;
+    top: var(--topbar-h, 80px);
+    z-index: 15;
+    margin: 0 -32px;
+    padding: 8px 32px 0;
+    background: var(--bg);
+  }
+  .rail::before { display: none; }
+  .rail h2 {
+    position: static;
     display: flex;
     align-items: center;
     height: 56px;
     padding: 0 8px 0 20px;
     border-radius: 999px;
     background: var(--bar);
+    box-shadow: 0 6px 18px rgba(23, 22, 26, 0.08);
+    font-size: 24px;
   }
-  .rail::before { display: none; }
-  .rail h2 { position: static; padding: 0; font-size: 24px; }
 
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
@@ -1776,6 +1787,7 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .shots { grid-template-columns: minmax(0, 1fr); }
   .detail th, .detail td { padding: 10px; font-size: 14px; }
 
+  .rail { margin: 0 -16px; padding: 8px 16px 0; }
   .rail h2 { font-size: 22px; }
   .exp-row {
     flex-direction: column;

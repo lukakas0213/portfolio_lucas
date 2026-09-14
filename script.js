@@ -651,6 +651,12 @@ function setLang(next) {
   show(currentTab());
 }
 
+// 섹션 헤더가 상단 바 바로 아래에 붙도록 상단 바 높이를 CSS 변수로 전달
+const topbar = document.querySelector('.topbar');
+const syncTopbarHeight = () => document.documentElement.style.setProperty('--topbar-h', `${topbar.offsetHeight}px`);
+new ResizeObserver(syncTopbarHeight).observe(topbar);
+syncTopbarHeight();
+
 tabs.forEach((tab) => tab.addEventListener('click', () => show(tab.dataset.tab, true)));
 langButtons.forEach((btn) => btn.addEventListener('click', () => setLang(btn.dataset.lang)));
 window.addEventListener('hashchange', () => show(currentTab(), true));
