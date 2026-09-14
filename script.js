@@ -52,7 +52,7 @@ const experience = [
     period: { ko: '2026.03 – 현재', en: '2026.03 – Present' },
     org: { ko: '대한민국 육군', en: 'Republic of Korea Army' },
     short: { ko: '대한민국 육군', en: 'ROK Army' },
-    role: { ko: '소프트웨어 개발병', en: 'Software Developer' },
+    role: { ko: '소프트웨어 개발병', en: 'Software Engineer' },
     desc: { ko: '정보체계관리단', en: 'Information Systems Management Group' },
     theme: 'army',
   },
