@@ -1671,7 +1671,7 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .t-h1 .word,
   .t-h2 .word { font-size: 22cqi; }
 
-  .sec { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .sec { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .sec + .sec { margin-top: 48px; }
   /* 섹션 헤더: 스크롤하는 동안 상단 바 바로 아래에 고정 (위쪽 틈은 배경색으로 가림) */
   .rail {
@@ -1679,10 +1679,21 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
     top: var(--topbar-h, 80px);
     z-index: 15;
     margin: 0 -32px;
-    padding: 8px 32px 0;
+    padding: 8px 32px 12px;
     background: var(--bg);
   }
   .rail::before { display: none; }
+  /* 헤더 아래로 들어가는 카드가 칼로 자른 듯 보이지 않게 부드럽게 사라지는 띠 */
+  .rail::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 24px;
+    background: linear-gradient(var(--bg), color-mix(in srgb, var(--bg) 0%, transparent));
+    pointer-events: none;
+  }
   .rail h2 {
     position: static;
     display: flex;
@@ -1787,7 +1798,7 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .shots { grid-template-columns: minmax(0, 1fr); }
   .detail th, .detail td { padding: 10px; font-size: 14px; }
 
-  .rail { margin: 0 -16px; padding: 8px 16px 0; }
+  .rail { margin: 0 -16px; padding: 8px 16px 12px; }
   .rail h2 { font-size: 22px; }
   .exp-row {
     flex-direction: column;
