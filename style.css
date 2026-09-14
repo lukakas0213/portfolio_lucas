@@ -359,120 +359,109 @@ button.tile:hover {
   align-items: center;
 }
 
+/* About Now 타일: 세로 타임라인 (맨 위 = 지금) */
 .now {
-  gap: 8px;
-  padding-block: 22px;
-}
-
-.now .top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
   font-family: var(--kr);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--mint-ink);
 }
 
-.now .badge {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.now .when {
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.now .current strong {
-  display: block;
-  font-family: var(--kr);
-  font-size: 26px;
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-}
-
-.now .current span {
-  font-family: var(--kr);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--mint-ink);
-}
-
-/* 이전 경험 미니 타임라인 */
-.now-list {
+.now-rail {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 12px;
   margin: 0;
-  padding: 10px 0 0;
+  padding: 0;
   list-style: none;
-  border-top: 1px solid rgba(23, 22, 26, 0.1);
 }
 
-.now-list::before {
+.now-rail::before {
   content: '';
   position: absolute;
   left: 3px;
-  top: 20px;
-  bottom: 6px;
+  top: 10px;
+  bottom: 8px;
   width: 1px;
-  background: var(--mint-ink);
-  opacity: 0.25;
+  background: #ecebe7;
 }
 
-.now-list li {
+.now-rail li {
   position: relative;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  gap: 8px;
-  padding-left: 18px;
-  font-family: var(--kr);
+  column-gap: 10px;
+  padding-left: 20px;
 }
 
-.now-list li::before {
+.now-rail li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 7px;
+  top: 0.45em;
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--mint-ink);
-  opacity: 0.45;
+  background: #d4d2cc;
 }
 
-.now-list b {
-  font-size: 15px;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.now-list small {
-  flex: none;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--mint-ink);
-  white-space: nowrap;
-}
-
-.now-list b {
+.now-rail b {
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--body);
 }
 
-/* 타일 폭이 좁을 때(1100~1300px 데스크톱) 글자를 줄여 넘치지 않게 */
-@container (max-width: 290px) {
-  .now .current strong { font-size: 22px; }
-  .now-list b { font-size: 14px; }
-  .now-list small,
-  .now .when { font-size: 12px; }
+.now-rail time {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.now-rail .is-now::before {
+  background: oklch(0.68 0.17 150);
+  animation: now-ping 2.4s ease-out infinite;
+}
+
+.now-rail .is-now b {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.now-rail .is-now time {
+  font-weight: 700;
+  color: oklch(0.6 0.15 150);
+}
+
+.now-rail .is-now span {
+  grid-column: 1 / -1;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--body);
+}
+
+@keyframes now-ping {
+  0% { box-shadow: 0 0 0 0 oklch(0.68 0.17 150 / 0.5); }
+  70%, 100% { box-shadow: 0 0 0 6px oklch(0.68 0.17 150 / 0); }
+}
+
+/* 타일 폭이 좁을 때(1100~1300px 데스크톱) */
+@container (max-width: 250px) {
+  .now-rail .is-now b { font-size: 21px; }
+  .now-rail b { font-size: 13px; }
+  .now-rail time { font-size: 11px; }
 }
 
 .resume-cta .top {
@@ -1466,7 +1455,6 @@ button.tile:hover {
   .t-l { padding: 20px 22px; }
   .stack-tile, .board-empty { padding: 18px; }
   .stack-tile h3 { font-size: 26px; }
-  .now .current strong { font-size: 24px; }
   .arrow-btn { width: 44px; height: 44px; }
   .t-c { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .contact {
@@ -1601,6 +1589,7 @@ button.tile:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .now-rail .is-now::before { animation: none; }
   *,
   *::before,
   *::after {

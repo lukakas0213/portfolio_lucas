@@ -187,9 +187,9 @@ const QUANT = {
 };
 
 const skills = [
-  ['Languages', 'Java, Python, JavaScript, C, Kotlin'],
-  ['Frameworks', 'Spring Boot, Django, PyTorch, TensorFlow, D3.js'],
-  ['Tools', 'Git, Docker, Airflow, Firebase, Arduino'],
+  ['Languages', 'Python, TypeScript, JavaScript, Java, C'],
+  ['Frameworks', 'FastAPI, LangGraph, Next.js, React, SQLAlchemy, D3.js'],
+  ['Tools', 'Git, Docker, PostgreSQL, Airflow, Playwright, Selenium'],
 ];
 
 let lang = 'ko';
@@ -205,18 +205,15 @@ const t = (value) => (value && typeof value === 'object' ? value[lang] : value);
 // 같은 해 기간은 '2025.08 – 11'처럼 줄여서 표시
 const shortPeriod = (period) => t(period).replace(/(\d{4})\.(\d{2}) – \1\.(\d{2})/, '$1.$2 – $3');
 
-// About의 Now 타일: 가장 최근 경력 + 이전 경력 미니 타임라인
+// About의 Now 타일: 세로 타임라인 하나 (맨 위가 지금, 아래로 갈수록 과거)
 function nowTile() {
   const [current, ...previous] = experience;
+  const yy = (e) => shortPeriod(e.period).replace(/\b20(\d{2})\./g, '$1.');
   return `
-    <div class="tile mint stack-tile now t-n">
-      <div class="top">
-        <span class="badge"><span class="dot"></span>Now</span>
-        <span class="when">${shortPeriod(current.period)}</span>
-      </div>
-      <div class="current"><strong>${t(current.short || current.org)}</strong><span>${t(current.role)}</span></div>
-      <ul class="now-list">
-        ${previous.map((e) => `<li><b>${t(e.short || e.org)}</b><small>${shortPeriod(e.period)}</small></li>`).join('')}
+    <div class="tile now t-n">
+      <ul class="now-rail">
+        <li class="is-now"><b>${t(current.short || current.org)}</b><time>${lang === 'ko' ? '현재' : 'Now'}</time><span>${t(current.role)}</span></li>
+        ${previous.map((e) => `<li><b>${t(e.short || e.org)}</b><time>${yy(e)}</time></li>`).join('')}
       </ul>
     </div>`;
 }
