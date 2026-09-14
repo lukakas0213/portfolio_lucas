@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 150 100">
+  <defs>
+    <clipPath id="bend"><polygon points="0,4 0,22 75,46 75,28"/></clipPath>
+    <clipPath id="on-white"><rect width="37.5" height="25"/><rect x="37.5" y="25" width="37.5" height="25"/></clipPath>
+    <clipPath id="on-red"><rect x="37.5" width="37.5" height="25"/><rect y="25" width="37.5" height="25"/></clipPath>
+    <g id="bottony">
+      <rect x="-3" y="-17" width="6" height="34"/><rect x="-26" y="-3" width="52" height="6"/>
+      <circle cx="0" cy="-19" r="3.4"/><circle cx="-3.6" cy="-15.6" r="3"/><circle cx="3.6" cy="-15.6" r="3"/>
+      <circle cx="0" cy="19" r="3.4"/><circle cx="-3.6" cy="15.6" r="3"/><circle cx="3.6" cy="15.6" r="3"/>
+      <circle cx="-28" cy="0" r="3.4"/><circle cx="-24.6" cy="-3.6" r="3"/><circle cx="-24.6" cy="3.6" r="3"/>
+      <circle cx="28" cy="0" r="3.4"/><circle cx="24.6" cy="-3.6" r="3"/><circle cx="24.6" cy="3.6" r="3"/>
+    </g>
+    <g id="calvert">
+      <rect width="75" height="50" fill="#ffd200"/>
+      <rect x="12.5" width="12.5" height="50" fill="#000"/><rect x="37.5" width="12.5" height="50" fill="#000"/><rect x="62.5" width="12.5" height="50" fill="#000"/>
+      <g clip-path="url(#bend)">
+        <rect width="75" height="50" fill="#000"/>
+        <rect x="12.5" width="12.5" height="50" fill="#ffd200"/><rect x="37.5" width="12.5" height="50" fill="#ffd200"/><rect x="62.5" width="12.5" height="50" fill="#ffd200"/>
+      </g>
+    </g>
+    <g id="crossland">
+      <rect width="75" height="50" fill="#fff"/>
+      <rect x="37.5" width="37.5" height="25" fill="#e21833"/><rect y="25" width="37.5" height="25" fill="#e21833"/>
+      <g clip-path="url(#on-white)"><use xlink:href="#bottony" transform="translate(37.5 25)" fill="#e21833"/></g>
+      <g clip-path="url(#on-red)"><use xlink:href="#bottony" transform="translate(37.5 25)" fill="#fff"/></g>
+    </g>
+  </defs>
+  <use xlink:href="#calvert"/>
+  <use xlink:href="#crossland" x="75"/>
+  <use xlink:href="#crossland" y="50"/>
+  <use xlink:href="#calvert" x="75" y="50"/>
+</svg>
