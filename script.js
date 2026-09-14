@@ -26,6 +26,10 @@ const I18N = {
     secStrategy: '투자 전략과 평가',
     openImage: '크게 보기',
     boardSoon: '게시판은<br>준비 중이에요.',
+    expSite: '웹사이트',
+    expDetail: '경험',
+    expWhat: '무엇을 했나',
+    expSoon: '준비 중',
   },
   en: {
     mission: 'Turning <mark>ideas</mark><br>into <mark class="y">code</mark>.',
@@ -44,6 +48,10 @@ const I18N = {
     secStrategy: 'Strategy',
     openImage: 'Open full size',
     boardSoon: 'The board is<br>coming soon.',
+    expSite: 'Website',
+    expDetail: 'Experience',
+    expWhat: 'What I did',
+    expSoon: 'Coming soon',
   },
 };
 
@@ -54,7 +62,7 @@ const experience = [
     short: { ko: '대한민국 육군', en: 'ROK Army' },
     role: { ko: '소프트웨어 개발병', en: 'Software Engineer' },
     desc: { ko: '정보체계관리단', en: 'Information Systems Management Group' },
-    theme: 'army',
+    theme: 'army', site: 'https://www.army.mil.kr',
   },
   {
     period: '2025.11 – 2026.01',
@@ -62,30 +70,30 @@ const experience = [
     short: { ko: '오히메', en: 'Ohime' },
     role: { ko: '소프트웨어 엔지니어', en: 'Software Engineer' },
     desc: { ko: '쇼핑몰 정산 자동화 개발', en: 'Built shopping mall settlement automation' },
-    theme: 'ohime', logo: { src: 'sources/logos/ohime-logo.png', alt: 'OHIME', h: 18 },
+    theme: 'ohime', site: 'https://www.ohime.co.kr', logo: { src: 'sources/logos/ohime-logo.png', alt: 'OHIME', h: 18 },
   },
   {
     period: '2025.08 – 2025.11',
     org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
     role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
-    theme: 'kakao',
+    theme: 'kakao', site: 'https://www.kakaomobility.com',
     desc: {
       ko: '모니터링 통합 서버 · Python 모니터링 라이브러리 개발',
       en: 'Monitoring hub server · Python monitoring library',
     },
   },
   {
-    period: '2025.02 – 2025.05', href: 'https://hdi.cs.umd.edu/',
+    period: '2025.02 – 2025.05',
     org: { ko: 'Human Data Interaction Lab', en: 'Human Data Interaction Lab' },
     short: 'HDI Lab',
-    theme: 'hdi', logo: { src: 'sources/logos/hdi-logo.webp', alt: 'Human-Data Interaction Group', h: 34 },
+    theme: 'hdi', site: 'https://hdi.cs.umd.edu', logo: { src: 'sources/logos/hdi-logo.webp', alt: 'Human-Data Interaction Group', h: 34 },
     role: { ko: '학부 연구생 · UMD', en: 'Undergraduate Researcher · UMD' },
     desc: { ko: '데이터 시각화 구조 분석 웹 툴 VisAnatomy 개발', en: 'Built VisAnatomy, a web tool for analyzing visualization structure' },
   },
   {
     period: '2024.06 – 2024.07',
     org: { ko: '안국엔지니어링', en: 'Ankug Engineering' },
-    theme: 'ankug', logo: { src: 'sources/logos/ankug-white.svg', alt: 'Ankug Engineering', h: 28 },
+    theme: 'ankug', site: 'https://www.ankugenc.com', logo: { src: 'sources/logos/ankug-white.svg', alt: 'Ankug Engineering', h: 28 },
     role: { ko: '엔지니어 인턴', en: 'Engineering Intern' },
     desc: { ko: 'FDS, Pathfinder로 화재 확산 및 대피 경로 시뮬레이션', en: 'Simulated fire spread and evacuation routes with FDS and Pathfinder' },
   },
@@ -272,13 +280,27 @@ function expDeco(e) {
 // 카드 색은 경력 순서가 바뀌어도 회사별로 고정
 const THEME_CLASS = { army: 0, kakao: 1, hdi: 2, ankug: 3, ohime: 4 };
 
+const EXT_ICON = '<svg class="half-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
+const NEXT_ICON = '<svg class="half-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>';
+
+// 경력 카드를 누르면 왼쪽 "웹사이트", 오른쪽 "상세" 두 칸으로 나뉨 (두 칸 구조 동일)
+function expActions(e) {
+  const L = I18N[lang];
+  const host = e.site ? new URL(e.site).hostname.replace(/^www\./, '') : '';
+  const site = e.site
+    ? `<a class="half" href="${e.site}" target="_blank" rel="noopener"><span class="half-top"><small>${L.expSite}</small>${EXT_ICON}</span><strong>${host}</strong></a>`
+    : '';
+  const detail = e.detail
+    ? `<a class="half" href="${e.detail}"><span class="half-top"><small>${L.expDetail}</small>${NEXT_ICON}</span><strong>${L.expWhat}</strong></a>`
+    : `<span class="half is-soon" aria-disabled="true"><span class="half-top"><small>${L.expDetail}</small></span><strong>${L.expSoon}</strong></span>`;
+  return `<div class="exp-actions">${site}${detail}</div>`;
+}
+
 // Resume 경력 줄: 회사 이름을 크게, 오른쪽에 역할 · 기간 · 한 줄 설명
 function expRow(e, i) {
   const name = t(e.short || e.org);
-  const tag = e.href ? 'a' : 'div';
-  const attrs = e.href ? ` href="${e.href}" target="_blank" rel="noopener"` : '';
   return `
-    <${tag} class="tile exp-row c${THEME_CLASS[e.theme] ?? i % 4}"${attrs}>
+    <div class="tile exp-row c${THEME_CLASS[e.theme] ?? i % 4}" tabindex="0" role="button" aria-expanded="false">
       ${expDeco(e)}
       ${e.logo ? `<span class="exp-logo"><img src="${e.logo.src}" alt="${e.logo.alt}" style="--lh: ${e.logo.h}px"></span>` : ''}
       ${i === 0 ? '<div class="exp-now"><span class="dot"></span>Now</div>' : ''}
@@ -288,7 +310,8 @@ function expRow(e, i) {
         <strong>${t(e.role)}</strong>
         ${e.desc ? `<span class="desc">${t(e.desc)}</span>` : ''}
       </div>
-    </${tag}>`;
+      ${expActions(e)}
+    </div>`;
 }
 
 function projTile(p, i) {
@@ -504,11 +527,41 @@ async function copyEmail() {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
+function setExpOpen(row, open) {
+  content.querySelectorAll('.exp-row.open').forEach((r) => {
+    r.classList.remove('open');
+    r.setAttribute('aria-expanded', 'false');
+  });
+  if (row && open) {
+    row.classList.add('open');
+    row.setAttribute('aria-expanded', 'true');
+  }
+}
+
 content.addEventListener('click', (e) => {
   const go = e.target.closest('[data-go]');
   if (go) show(go.dataset.go, true);
 
   if (e.target.closest('[data-copy-email]')) copyEmail();
+
+  const row = e.target.closest('.exp-row');
+  if (row && !e.target.closest('.exp-actions a')) setExpOpen(row, !row.classList.contains('open'));
+});
+
+content.addEventListener('keydown', (e) => {
+  const row = e.target.closest('.exp-row');
+  if (row && e.target === row && (e.key === 'Enter' || e.key === ' ')) {
+    e.preventDefault();
+    setExpOpen(row, !row.classList.contains('open'));
+  }
+});
+
+// 카드 밖을 누르거나 Esc로 닫기
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.exp-row')) setExpOpen(null, false);
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') setExpOpen(null, false);
 });
 
 setLang(lang);
