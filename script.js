@@ -28,8 +28,11 @@ const I18N = {
     boardSoon: '게시판은<br>준비 중이에요.',
     expSite: '웹사이트',
     expDetail: '경험',
-    expWhat: '무엇을 했나',
+    expWhat: '한 일',
     expSoon: '준비 중',
+    expStack: '기술 스택',
+    expPrev: '이전 경력',
+    expNext: '다음 경력',
   },
   en: {
     mission: 'Turning <mark>ideas</mark><br>into <mark class="y">code</mark>.',
@@ -52,6 +55,9 @@ const I18N = {
     expDetail: 'Experience',
     expWhat: 'What I did',
     expSoon: 'Coming soon',
+    expStack: 'Stack',
+    expPrev: 'Previous',
+    expNext: 'Next',
   },
 };
 
@@ -62,7 +68,11 @@ const experience = [
     short: { ko: '대한민국 육군', en: 'ROK Army' },
     role: { ko: '소프트웨어 개발병', en: 'Software Engineer' },
     desc: { ko: '정보체계관리단', en: 'Information Systems Management Group' },
-    theme: 'army', site: 'https://www.army.mil.kr',
+    theme: 'army', site: 'https://www.army.mil.kr/sites/army/index.do',
+    about: {
+      ko: '정보체계관리단에서 소프트웨어 개발병으로 복무하고 있습니다.',
+      en: 'Serving as a software engineer in the Information Systems Management Group.',
+    },
   },
   {
     period: '2025.11 – 2026.01',
@@ -71,12 +81,66 @@ const experience = [
     role: { ko: '소프트웨어 엔지니어', en: 'Software Engineer' },
     desc: { ko: '쇼핑몰 정산 자동화 개발', en: 'Built shopping mall settlement automation' },
     theme: 'ohime', site: 'https://www.ohime.co.kr', logo: { src: 'sources/logos/ohime-logo.png', alt: 'OHIME', h: 18 },
+    stack: ['Python', 'FastAPI', 'Playwright', 'APScheduler', 'SQLAlchemy', 'Docker', 'Telegram API'],
+    work: [
+      {
+        items: {
+          ko: [
+            '카카오톡 스토어, 롯데ON, 롯데i몰, CJ온스타일, GS샵, Hmall 등 여러 쇼핑몰의 정산(예치금) 데이터를 자동으로 확인하는 Playwright 크롤러 개발',
+            '공통 체커 클래스로 쇼핑몰별 크롤러 구조를 통일하고, 한 쇼핑몰의 여러 계정 처리 지원',
+            '매일 오전 9시와 오후 6시에 자동 실행되는 스케줄러와 최대 3회 재시도 로직 구성',
+            '휴대폰 단축어로 받은 SMS 인증번호를 FastAPI 서버로 전달해 2단계 로그인 인증 자동 처리',
+            '쇼핑몰별 수집 결과를 Telegram 통합 요약으로 전송',
+            'Docker Compose로 인증 서버와 스케줄러를 24시간 운영하고, 봇 감지 우회와 로그 로테이션으로 안정화',
+          ],
+          en: [
+            'Built Playwright crawlers that check settlement (deposit) data across malls including KakaoTalk Store, Lotte ON, Lotte iMall, CJ OnStyle, GS SHOP and Hmall',
+            'Unified per-mall crawlers under a shared checker class, with support for multiple accounts per mall',
+            'Set up a scheduler that runs every day at 9 AM and 6 PM with up to 3 retries',
+            'Automated 2-step login by relaying SMS verification codes from a phone shortcut to a FastAPI server',
+            'Sent a combined summary of every mall to Telegram',
+            'Ran the auth server and scheduler 24/7 with Docker Compose, hardened with bot-detection workarounds and log rotation',
+          ],
+        },
+      },
+    ],
   },
   {
     period: '2025.08 – 2025.11',
     org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
     role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
     theme: 'kakao', site: 'https://www.kakaomobility.com',
+    stack: ['Spring Boot', 'Python', 'Prometheus', 'Grafana', 'Alertmanager'],
+    work: [
+      {
+        title: { ko: '모니터링 통합 서버', en: 'Monitoring hub server' },
+        items: {
+          ko: [
+            '여러 애플리케이션의 메트릭을 중앙에서 수집, 전처리, 관리하는 Spring Boot 기반 통합 서버 개발',
+            'Prometheus, Grafana, Alertmanager 등과 연계하여 시각화 및 알람 파이프라인 구성',
+          ],
+          en: [
+            'Built a Spring Boot hub server that collects, preprocesses and manages metrics from multiple applications in one place',
+            'Connected Prometheus, Grafana and Alertmanager into a visualization and alerting pipeline',
+          ],
+        },
+      },
+      {
+        title: { ko: '모니터링 자동화 Python 라이브러리', en: 'Monitoring automation Python library' },
+        items: {
+          ko: [
+            'Prometheus 메트릭과 애플리케이션 로그를 수집하여 게이트웨이 서버로 전송하는 라이브러리 개발',
+            '라이브러리를 통해 서로 다른 애플리케이션의 메트릭과 로그를 일관성 있게 수집',
+            '로그 전송 자동화, 사용자 정의 주기 동시 적용, 애플리케이션별 수집 전송 지원',
+          ],
+          en: [
+            'Built a library that collects Prometheus metrics and application logs and sends them to the gateway server',
+            'Collected metrics and logs from different applications in one consistent way',
+            'Supported automated log shipping, multiple custom collection intervals at once, and per-application collection and delivery',
+          ],
+        },
+      },
+    ],
     desc: {
       ko: '모니터링 통합 서버 · Python 모니터링 라이브러리 개발',
       en: 'Monitoring hub server · Python monitoring library',
@@ -87,6 +151,27 @@ const experience = [
     org: { ko: 'Human Data Interaction Lab', en: 'Human Data Interaction Lab' },
     short: 'HDI Lab',
     theme: 'hdi', site: 'https://hdi.cs.umd.edu', logo: { src: 'sources/logos/hdi-logo.webp', alt: 'Human-Data Interaction Group', h: 34 },
+    stack: ['JavaScript', 'D3.js', 'Python', 'HTML/CSS', 'SVG', 'JSON'],
+    work: [
+      {
+        items: {
+          ko: [
+            '데이터 시각화 구조 분석을 위한 웹 기반 주석 툴(VisAnatomy) 개발',
+            'HTML, CSS, JavaScript, D3.js, Python을 활용해 SVG 처리 및 JSON 데이터 관리 시스템 구현',
+            '일관된 데이터 관리를 위한 경로 ID 정렬 시스템 설계 및 구현',
+            '클라이언트-서버 간 실시간 동기화 시스템 구축 및 JSON 파일 구조 최적화',
+            '사용자 친화적인 인터페이스와 데이터 관리 시스템으로 데이터 일관성과 처리 효율성 향상',
+          ],
+          en: [
+            'Built VisAnatomy, a web-based annotation tool for analyzing the structure of data visualizations',
+            'Implemented SVG processing and JSON data management with HTML, CSS, JavaScript, D3.js and Python',
+            'Designed and built a path ID alignment system to keep annotation data consistent',
+            'Built real-time client-server sync and optimized the JSON file structure',
+            'Improved data consistency and processing efficiency with a clearer interface and sturdier data handling',
+          ],
+        },
+      },
+    ],
     role: { ko: '학부 연구생 · UMD', en: 'Undergraduate Researcher · UMD' },
     desc: { ko: '데이터 시각화 구조 분석 웹 툴 VisAnatomy 개발', en: 'Built VisAnatomy, a web tool for analyzing visualization structure' },
   },
@@ -94,6 +179,23 @@ const experience = [
     period: '2024.06 – 2024.07',
     org: { ko: '안국엔지니어링', en: 'Ankug Engineering' },
     theme: 'ankug', site: 'https://www.ankugenc.com', logo: { src: 'sources/logos/ankug-white.svg', alt: 'Ankug Engineering', h: 28 },
+    stack: ['CAD', 'FDS', 'Pathfinder'],
+    work: [
+      {
+        items: {
+          ko: [
+            '산업용 건물의 화재 감지 및 예방 시스템 설계 업무 지원',
+            'CAD, FDS(Fire Dynamics Simulator), Pathfinder를 활용하여 화재 확산 모델링 및 대피 경로 최적화 수행',
+            '제어실을 화재 발생 지점으로 설정한 시나리오를 시뮬레이션하고, 가시거리, 온도 분포, 일산화탄소 농도 등 정량 데이터 분석',
+          ],
+          en: [
+            'Supported the design of fire detection and prevention systems for industrial buildings',
+            'Modeled fire spread and optimized evacuation routes with CAD, FDS (Fire Dynamics Simulator) and Pathfinder',
+            'Simulated a fire starting in the control room and analyzed visibility, temperature distribution and carbon monoxide levels',
+          ],
+        },
+      },
+    ],
     role: { ko: '엔지니어 인턴', en: 'Engineering Intern' },
     desc: { ko: 'FDS, Pathfinder로 화재 확산 및 대피 경로 시뮬레이션', en: 'Simulated fire spread and evacuation routes with FDS and Pathfinder' },
   },
@@ -283,24 +385,25 @@ const THEME_CLASS = { army: 0, kakao: 1, hdi: 2, ankug: 3, ohime: 4 };
 const EXT_ICON = '<svg class="half-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>';
 const NEXT_ICON = '<svg class="half-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>';
 
+const siteHost = (url) => new URL(url).hostname.replace(/^www\./, '');
+
 // 경력 카드를 누르면 왼쪽 "웹사이트", 오른쪽 "상세" 두 칸으로 나뉨 (두 칸 구조 동일)
 function expActions(e) {
   const L = I18N[lang];
-  const host = e.site ? new URL(e.site).hostname.replace(/^www\./, '') : '';
+  const host = e.site ? siteHost(e.site) : '';
   const site = e.site
     ? `<a class="half" href="${e.site}" target="_blank" rel="noopener"><span class="half-top"><small>${L.expSite}</small>${EXT_ICON}</span><strong>${host}</strong></a>`
     : '';
-  const detail = e.detail
-    ? `<a class="half" href="${e.detail}"><span class="half-top"><small>${L.expDetail}</small>${NEXT_ICON}</span><strong>${L.expWhat}</strong></a>`
-    : `<span class="half is-soon" aria-disabled="true"><span class="half-top"><small>${L.expDetail}</small></span><strong>${L.expSoon}</strong></span>`;
+  const detail = `<a class="half" href="#exp-${e.theme}"><span class="half-top"><small>${L.expDetail}</small>${NEXT_ICON}</span><strong>${L.expWhat}</strong></a>`;
   return `<div class="exp-actions">${site}${detail}</div>`;
 }
 
 // Resume 경력 줄: 회사 이름을 크게, 오른쪽에 역할 · 기간 · 한 줄 설명
-function expRow(e, i) {
+function expRow(e, i, hero = false) {
   const name = t(e.short || e.org);
+  const attrs = hero ? '' : ' tabindex="0" role="button" aria-expanded="false"';
   return `
-    <div class="tile exp-row c${THEME_CLASS[e.theme] ?? i % 4}" tabindex="0" role="button" aria-expanded="false">
+    <div class="tile exp-row${hero ? ' exp-hero' : ''} c${THEME_CLASS[e.theme] ?? i % 4}"${attrs}>
       ${expDeco(e)}
       ${e.logo ? `<span class="exp-logo"><img src="${e.logo.src}" alt="${e.logo.alt}" style="--lh: ${e.logo.h}px"></span>` : ''}
       ${i === 0 ? '<div class="exp-now"><span class="dot"></span>Now</div>' : ''}
@@ -310,7 +413,7 @@ function expRow(e, i) {
         <strong>${t(e.role)}</strong>
         ${e.desc ? `<span class="desc">${t(e.desc)}</span>` : ''}
       </div>
-      ${expActions(e)}
+      ${hero ? '' : expActions(e)}
     </div>`;
 }
 
@@ -401,7 +504,7 @@ const views = {
       <div class="sec sec-exp">
         ${rail('Experience')}
         <div class="sec-body">
-          <div class="exp-list">${experience.map(expRow).join('')}</div>
+          <div class="exp-list">${experience.map((e, i) => expRow(e, i)).join('')}</div>
         </div>
       </div>
 
@@ -486,6 +589,46 @@ const content = document.getElementById('content');
 const tabs = [...document.querySelectorAll('.tabs [data-tab]')];
 const langButtons = [...document.querySelectorAll('.lang [data-lang]')];
 
+// 경력 상세 페이지: Resume 경력 카드를 헤더로 크게, 아래에 한 일 · 기술 스택 · 사이트 · 이전/다음 경력
+const EXP_ACCENT = { army: '#4c5a33', kakao: '#191919', hdi: '#c85200', ankug: '#f17c39', ohime: '#1a1a1a' };
+
+function expDetail(e, L) {
+  const i = experience.indexOf(e);
+  const older = experience[i + 1];
+  const newer = experience[i - 1];
+  const work = e.work
+    ? e.work.map((sec) => `
+        ${sec.title ? `<h3>${t(sec.title)}</h3>` : ''}
+        <ul class="exp-did">${t(sec.items).map((item) => `<li>${item}</li>`).join('')}</ul>`).join('')
+    : `<p class="exp-detail-about">${t(e.about)}</p>`;
+  const navLink = (x, cls, label) => (x
+    ? `<a class="tile ${cls}" href="#exp-${x.theme}"><small>${label}</small><strong>${t(x.short || x.org)}</strong></a>`
+    : '<span></span>');
+  return `
+    <section class="detail exp-detail" style="--accent: ${EXP_ACCENT[e.theme] ?? 'var(--ink)'}">
+      <a class="back-link" href="#resume">${ICONS.arrow}<span>${L.back}</span></a>
+      ${expRow(e, i, true)}
+      <div class="exp-detail-body">
+        <div class="tile exp-detail-work">
+          <h2 class="exp-detail-label">${L.expWhat}</h2>
+          ${work}
+        </div>
+        <aside class="exp-detail-side">
+          ${e.stack ? `<div class="tile exp-detail-stack"><h2 class="exp-detail-label">${L.expStack}</h2><div class="exp-chips">${e.stack.map((x) => `<span>${x}</span>`).join('')}</div></div>` : ''}
+          ${e.site ? `<a class="tile exp-detail-site" href="${e.site}" target="_blank" rel="noopener"><span class="exp-detail-label">${L.expSite}</span><strong>${siteHost(e.site)}</strong>${ICONS.arrow}</a>` : ''}
+        </aside>
+      </div>
+      <nav class="exp-detail-nav">
+        ${navLink(older, 'is-prev', `← ${L.expPrev}`)}
+        ${navLink(newer, 'is-next', `${L.expNext} →`)}
+      </nav>
+    </section>`;
+}
+
+experience.forEach((e) => {
+  views[`exp-${e.theme}`] = (L) => expDetail(e, L);
+});
+
 function currentTab() {
   const name = location.hash.slice(1);
   return views[name] ? name : 'about';
@@ -494,7 +637,7 @@ function currentTab() {
 function show(name, scroll) {
   if (!views[name]) name = 'about';
   content.innerHTML = views[name](I18N[lang]);
-  const activeTab = name === 'quant' ? 'resume' : name;
+  const activeTab = name === 'quant' || name.startsWith('exp-') ? 'resume' : name;
   tabs.forEach((tab) => tab.setAttribute('aria-selected', tab.dataset.tab === activeTab));
   if (location.hash !== `#${name}`) history.replaceState(null, '', `#${name}`);
   if (scroll) window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -545,7 +688,7 @@ content.addEventListener('click', (e) => {
   if (e.target.closest('[data-copy-email]')) copyEmail();
 
   const row = e.target.closest('.exp-row');
-  if (row && !e.target.closest('.exp-actions a')) setExpOpen(row, !row.classList.contains('open'));
+  if (row && !row.classList.contains('exp-hero') && !e.target.closest('.exp-actions a')) setExpOpen(row, !row.classList.contains('open'));
 });
 
 content.addEventListener('keydown', (e) => {

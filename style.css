@@ -984,6 +984,183 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .exp-actions, .half, .half-icon { transition: none; }
 }
 
+/* 경력 상세 페이지: Resume 경력 카드를 헤더로 크게 */
+.exp-hero {
+  height: 300px;
+  cursor: default;
+}
+
+.exp-detail-body {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--gap);
+  align-items: start;
+  margin-top: var(--gap);
+}
+
+.exp-detail-label {
+  margin: 0 0 14px;
+  font-family: var(--kr);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.exp-detail-work {
+  padding: 32px;
+}
+
+.exp-detail-work h3 {
+  margin: 28px 0 4px;
+  font-family: var(--kr);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.exp-detail-work .exp-detail-label + h3 {
+  margin-top: 0;
+}
+
+.exp-did {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.exp-did li {
+  position: relative;
+  padding: 14px 0 14px 22px;
+  border-top: 1px solid #ecebe7;
+  font-family: var(--kr);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.exp-did li:first-child {
+  border-top: 0;
+}
+
+.exp-did li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 1.45em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.exp-detail-about {
+  font-family: var(--kr);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+
+.exp-detail-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.exp-detail-stack {
+  padding: 28px;
+}
+
+.exp-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.exp-chips span {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  font-family: var(--kr);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--body);
+}
+
+.exp-detail-site {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 6px 12px;
+  padding: 24px 28px;
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.exp-detail-site .exp-detail-label {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.exp-detail-site strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.exp-detail-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+.exp-detail-nav a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 28px;
+  font-family: var(--kr);
+}
+
+.exp-detail-nav small {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.exp-detail-nav strong {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.exp-detail-nav .is-next {
+  grid-column: 2;
+  align-items: flex-end;
+  text-align: right;
+}
+
+@media (max-width: 860px) {
+  .exp-detail-body { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .exp-detail-work, .exp-detail-stack { padding: 22px; }
+  .exp-detail-site { padding: 20px 22px; }
+  .exp-detail-nav { grid-template-columns: minmax(0, 1fr); }
+  .exp-detail-nav .is-next { grid-column: auto; }
+  .exp-detail-nav a { padding: 18px 22px; }
+}
+
 /* Projects: 대표 프로젝트 + 작은 타일 */
 .proj-bento {
   display: grid;
