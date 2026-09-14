@@ -333,12 +333,10 @@ function fitSize(text, budget, max) {
   return `${Math.min(max, budget / em).toFixed(2)}cqi`;
 }
 
-// 카카오모빌리티 앱 아이콘
-const APPS = [
-  { src: 'sources/logos/kakaot-app.webp', alt: '카카오 T' },
-  { src: 'sources/logos/kakaonavi-app.webp', alt: '카카오내비' },
-  { src: 'sources/logos/kakaomap-app.webp', alt: '카카오맵' },
-];
+// 카카오모빌리티: 앱 아이콘을 크고 옅게 카드 가장자리에 걸쳐 배경 질감처럼
+const KAKAO_BG = '<div class="kakao-bg">'
+  + ['kakaot', 'kakaonavi', 'kakaomap'].map((k) => `<img class="kb-${k}" src="sources/logos/${k}-app.webp" alt="">`).join('')
+  + '</div>';
 
 // 테마별 배경: 육군은 위장무늬, 나머지는 각 브랜드 컬러만
 const TAXI = '<svg class="taxi" viewBox="0 0 100 100" aria-hidden="true"><rect x="42" y="14" width="16" height="10" rx="3" fill="#fff" stroke="#191919" stroke-width="3"/><path d="M24 46 L33 28 H67 L76 46Z" fill="#191919"/><rect x="8" y="44" width="84" height="30" rx="11" fill="#191919"/><path d="M35 44 L40 33 H48 V44Z M52 44 V33 H60 L65 44Z" fill="#fee500"/><rect x="80" y="52" width="9" height="7" rx="3" fill="#fee500"/><circle cx="28" cy="76" r="10" fill="#191919" stroke="#fff" stroke-width="4"/><circle cx="72" cy="76" r="10" fill="#191919" stroke="#fff" stroke-width="4"/></svg>';
@@ -365,7 +363,7 @@ const OHIME_PATTERN = (() => {
 
 const DECO = {
   army: { pattern: '<div class="pat pat-army"></div>' },
-  kakao: { pattern: ROUTE, art: TAXI, apps: APPS },
+  kakao: { pattern: KAKAO_BG + ROUTE, art: TAXI },
   hdi: { pattern: '' },
   ankug: { pattern: '' },
   ohime: { pattern: OHIME_PATTERN + '<div class="pat pat-ohime"></div>' },
@@ -375,8 +373,7 @@ function expDeco(e) {
   const d = DECO[e.theme];
   if (!d) return '';
   const pattern = d.pattern ? `<div class="exp-deco" aria-hidden="true">${d.pattern}${d.art ? `<div class="exp-art">${d.art}</div>` : ''}</div>` : '';
-  const apps = d.apps ? `<div class="exp-apps">${d.apps.map((a) => `<img src="${a.src}" alt="${a.alt}" title="${a.alt}">`).join('')}</div>` : '';
-  return pattern + apps;
+  return pattern;
 }
 
 // 카드 색은 경력 순서가 바뀌어도 회사별로 고정

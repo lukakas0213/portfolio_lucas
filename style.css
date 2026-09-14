@@ -857,8 +857,8 @@ button.tile:hover {
 
 /* 카드가 좁아도 택시는 보이게: 왼쪽 위 빈 공간으로 */
 @container (max-width: 860px) {
-  .exp-row.c1 .exp-art { display: block; top: 12px; left: 28px; right: auto; }
-  .exp-row.c1 .exp-art .taxi { width: 84px; height: 84px; }
+  .exp-row.c1 .exp-art { display: block; top: 6px; left: 28px; right: auto; }
+  .exp-row.c1 .exp-art .taxi { width: 72px; height: 72px; }
 }
 
 .exp-name,
@@ -1720,8 +1720,8 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
   .exp-art { right: calc(40% + 64px); }
-  .exp-row.c1 .exp-art { display: block; top: 12px; left: 28px; right: auto; }
-  .exp-row.c1 .exp-art .taxi { width: 84px; height: 84px; }
+  .exp-row.c1 .exp-art { display: block; top: 6px; left: 28px; right: auto; }
+  .exp-row.c1 .exp-art .taxi { width: 72px; height: 72px; }
   .proj-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: 240px repeat(4, minmax(200px, auto));
