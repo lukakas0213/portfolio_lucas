@@ -783,26 +783,13 @@ button.tile:hover {
 }
 
 /* 브랜드 컬러 카드는 로고를 흰 이름표 없이 바로 */
+.exp-row.c1 .exp-logo,
 .exp-row.c2 .exp-logo,
 .exp-row.c3 .exp-logo,
 .exp-row.c4 .exp-logo {
   padding: 0;
   background: none;
   box-shadow: none;
-}
-
-/* 카카오 택시 일러스트: 정보 영역 왼쪽, 카드 폭이 좁으면 숨김 */
-.exp-art {
-  position: absolute;
-  top: -18px;
-  right: calc(34% + 64px);
-}
-
-.exp-art .taxi {
-  display: block;
-  width: 116px;
-  height: 116px;
-  transform: rotate(-6deg);
 }
 
 /* 오히메 배경: 명품 브랜드 이름 워드마크 패턴 */
@@ -821,11 +808,8 @@ button.tile:hover {
 }
 
 
-@container (max-width: 860px) {
-  .exp-art { display: none; }
-}
 
-/* 카카오모빌리티: 카카오 옐로우(#FEE500) · 카카오 블랙 + 앱 아이콘 */
+/* 카카오모빌리티: 카카오 옐로우(#FEE500) · 카카오 블랙 · 로고 + 옅은 앱 아이콘 배경 */
 .exp-row.c1 {
   --sub: rgba(25, 25, 25, 0.66);
   background: #fee500;
@@ -851,15 +835,6 @@ button.tile:hover {
 .kb-kakaot { left: 300px; top: -60px; width: 230px; transform: rotate(-14deg); opacity: 0.14; }
 .kb-kakaonavi { left: 520px; top: 70px; width: 170px; transform: rotate(10deg); opacity: 0.12; }
 .kb-kakaomap { left: 190px; top: 120px; width: 140px; transform: rotate(16deg); opacity: 0.12; }
-
-/* 넓은 카드: 택시 지붕이 잘리지 않게 조금 내림 */
-.exp-row.c1 .exp-art { top: 6px; }
-
-/* 카드가 좁아도 택시는 보이게: 왼쪽 위 빈 공간으로 */
-@container (max-width: 860px) {
-  .exp-row.c1 .exp-art { display: block; top: 6px; left: 28px; right: auto; }
-  .exp-row.c1 .exp-art .taxi { width: 72px; height: 72px; }
-}
 
 .exp-name,
 .exp-info {
@@ -1727,9 +1702,6 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
 
   .exp-row { height: auto; min-height: 190px; padding-top: 64px; }
   .exp-info { width: 40%; }
-  .exp-art { right: calc(40% + 64px); }
-  .exp-row.c1 .exp-art { display: block; top: 6px; left: 28px; right: auto; }
-  .exp-row.c1 .exp-art .taxi { width: 72px; height: 72px; }
   .proj-bento {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: 240px repeat(4, minmax(200px, auto));
@@ -1849,9 +1821,6 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .kb-kakaot { left: auto; right: -40px; top: -30px; width: 150px; }
   .kb-kakaomap { left: auto; right: 60px; top: 110px; width: 110px; }
   .kb-kakaonavi { left: auto; right: 150px; top: 150px; width: 70px; }
-  .exp-row.c1 .exp-art { top: 10px; left: auto; right: 14px; }
-  .exp-row.c1 .exp-art .taxi { width: 64px; height: 64px; }
-  .exp-row.c1 .exp-info { padding-right: 64px; }
   .exp-info strong { font-size: 18px; }
   .exp-info .desc { font-size: 14px; }
 

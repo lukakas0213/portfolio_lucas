@@ -109,7 +109,7 @@ const experience = [
     period: '2025.08 – 2025.11',
     org: { ko: '카카오모빌리티', en: 'Kakao Mobility' },
     role: { ko: 'AI R&D팀 인턴', en: 'AI R&D Team Intern' },
-    theme: 'kakao', site: 'https://www.kakaomobility.com',
+    theme: 'kakao', site: 'https://www.kakaomobility.com', logo: { src: 'sources/logos/kakaomobility.svg', alt: 'kakao mobility', h: 22 },
     stack: ['Spring Boot', 'Python', 'Prometheus', 'Grafana', 'Alertmanager'],
     work: [
       {
@@ -339,9 +339,6 @@ const KAKAO_BG = '<div class="kakao-bg">'
   + '</div>';
 
 // 테마별 배경: 육군은 위장무늬, 나머지는 각 브랜드 컬러만
-const TAXI = '<svg class="taxi" viewBox="0 0 100 100" aria-hidden="true"><rect x="42" y="14" width="16" height="10" rx="3" fill="#fff" stroke="#191919" stroke-width="3"/><path d="M24 46 L33 28 H67 L76 46Z" fill="#191919"/><rect x="8" y="44" width="84" height="30" rx="11" fill="#191919"/><path d="M35 44 L40 33 H48 V44Z M52 44 V33 H60 L65 44Z" fill="#fee500"/><rect x="80" y="52" width="9" height="7" rx="3" fill="#fee500"/><circle cx="28" cy="76" r="10" fill="#191919" stroke="#fff" stroke-width="4"/><circle cx="72" cy="76" r="10" fill="#191919" stroke="#fff" stroke-width="4"/></svg>';
-
-const ROUTE = '<svg class="pat" viewBox="0 0 1000 210" preserveAspectRatio="none"><path d="M-10 170 C 180 170, 220 60, 420 80 S 700 190, 1010 40" stroke="#191919" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round" fill="none" opacity="0.35" vector-effect="non-scaling-stroke"/></svg>';
 
 // 오히메: 취급 명품 브랜드 로고를 쇼핑백 인쇄처럼 성긴 반복 패턴으로
 const LUX_LOGOS = [
@@ -363,7 +360,7 @@ const OHIME_PATTERN = (() => {
 
 const DECO = {
   army: { pattern: '<div class="pat pat-army"></div>' },
-  kakao: { pattern: KAKAO_BG + ROUTE, art: TAXI },
+  kakao: { pattern: KAKAO_BG },
   hdi: { pattern: '' },
   ankug: { pattern: '' },
   ohime: { pattern: OHIME_PATTERN + '<div class="pat pat-ohime"></div>' },
@@ -372,7 +369,7 @@ const DECO = {
 function expDeco(e) {
   const d = DECO[e.theme];
   if (!d) return '';
-  const pattern = d.pattern ? `<div class="exp-deco" aria-hidden="true">${d.pattern}${d.art ? `<div class="exp-art">${d.art}</div>` : ''}</div>` : '';
+  const pattern = d.pattern ? `<div class="exp-deco" aria-hidden="true">${d.pattern}</div>` : '';
   return pattern;
 }
 
