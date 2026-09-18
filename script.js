@@ -333,6 +333,13 @@ function fitSize(text, budget, max) {
   return `${Math.min(max, budget / em).toFixed(2)}cqi`;
 }
 
+// 여러 글자 중 가장 긴 것에 맞춘 크기 (경력 카드의 역할을 모두 같은 크기 · 한 줄로)
+function fitAll(texts, budget, max) {
+  return texts.map((text) => fitSize(text, budget, max)).sort((a, b) => parseFloat(a) - parseFloat(b))[0];
+}
+
+const roleVars = (list) => `--rd: ${fitAll(list, 36, 2.3)}; --rm: ${fitAll(list, 86, 5)}`;
+
 // 카카오모빌리티: 앱 아이콘을 크고 옅게 카드 가장자리에 걸쳐 배경 질감처럼
 const KAKAO_BG = '<div class="kakao-bg">'
   + ['kakaot', 'kakaonavi', 'kakaomap'].map((k) => `<img class="kb-${k}" src="sources/logos/${k}-app.webp" alt="">`).join('')
@@ -501,7 +508,7 @@ const views = {
       <div class="sec sec-exp">
         ${rail('Experience')}
         <div class="sec-body">
-          <div class="exp-list">${experience.map((e, i) => expRow(e, i)).join('')}</div>
+          <div class="exp-list" style="${roleVars(experience.map((e) => t(e.role)))}">${experience.map((e, i) => expRow(e, i)).join('')}</div>
         </div>
       </div>
 
@@ -604,7 +611,7 @@ function expDetail(e, L) {
   return `
     <section class="detail exp-detail" style="--accent: ${EXP_ACCENT[e.theme] ?? 'var(--ink)'}">
       <a class="back-link" href="#resume">${ICONS.arrow}<span>${L.back}</span></a>
-      ${expRow(e, i, true)}
+      <div class="exp-hero-wrap" style="${roleVars([t(e.role)])}">${expRow(e, i, true)}</div>
       <div class="exp-detail-body">
         <div class="tile exp-detail-work">
           <h2 class="exp-detail-label">${L.expWhat}</h2>
