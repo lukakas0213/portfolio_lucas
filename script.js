@@ -302,7 +302,7 @@ const QUANT = {
 
 const skills = [
   ['Languages', 'Python, TypeScript, JavaScript, Java, C'],
-  ['Frameworks', 'FastAPI, LangGraph, Next.js, React, SQLAlchemy, D3.js'],
+  ['Frameworks', 'FastAPI, LangGraph, Next.js, React, D3.js'],
   ['Tools', 'Git, Docker, PostgreSQL, Airflow, Playwright, Selenium'],
 ];
 
