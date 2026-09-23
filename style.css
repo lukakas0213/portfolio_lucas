@@ -682,7 +682,7 @@ button.tile:hover {
    설명은 두 줄 높이를 늘 차지하도록 맞춤 */
 .exp-info strong {
   font-family: var(--kr);
-  font-size: clamp(17px, var(--rd, 24px), 24px);
+  font-size: clamp(19px, var(--rd, 24px), 24px);
   font-weight: 800;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -1909,6 +1909,64 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .lang { padding: 5px; }
   .lang button { height: 46px; min-width: 52px; padding: 0 10px; font-size: 16px; }
   .exp-info { width: 48%; }
+
+  /* 카드 크기는 그대로 두고 글자만 조금 크게 (축소되어 보이는 폭이라 작게 읽힘) */
+  .label { font-size: 16px; }
+  .pill { font-size: 15px; }
+  .t-h1 .info .h1-eyebrow { font-size: 14px; }
+  .t-h1 .info strong { font-size: 34px; }
+  .t-h1 .info span { font-size: 18px; }
+  .t-p .name { font-size: 34px; }
+  .now-rail .is-now b { font-size: 27px; }
+  .now-rail .is-now span { font-size: 15px; }
+  .now-rail b { font-size: 16px; }
+  .now-rail time { font-size: 14px; }
+  .contact strong { font-size: 28px; }
+  .contact .c-text span { font-size: 17px; }
+
+  .rail h2 { font-size: 25px; }
+  .edu-eyebrow { font-size: 14px; }
+  .edu-years { font-size: 20px; }
+  .edu p { font-size: 19px; }
+  .skills-tile span { font-size: 16px; }
+  .skills-tile strong { font-size: 21px; }
+
+  .exp-now { font-size: 18px; }
+  .exp-period { font-size: 15px; }
+  .exp-info .desc { font-size: 18px; }
+  .half-top small { font-size: 16px; }
+
+  .proj .period { font-size: 16px; }
+  .proj p { font-size: 17px; }
+  .proj-gh h3 { font-size: 23px; }
+  .proj-gh span { font-size: 17px; }
+  .proj-featured p { font-size: 21px; }
+  .private-tag { font-size: 14px; }
+
+  .back-link { font-size: 17px; }
+  .exp-detail-label { font-size: 15px; }
+  .exp-detail-work h3 { font-size: 21px; }
+  .exp-did li { font-size: 18px; }
+  .exp-detail-about { font-size: 20px; }
+  .exp-chips span { font-size: 15px; }
+  .exp-detail-site strong { font-size: 24px; }
+  .exp-detail-nav small { font-size: 15px; }
+  .exp-detail-nav strong { font-size: 26px; }
+
+  .detail-hero p { font-size: 21px; }
+  .detail-stack span { font-size: 16px; }
+  .detail-flow li { font-size: 17px; }
+  .detail-flow b { font-size: 15px; }
+  .detail-h { font-size: 34px; }
+  .detail-text p { font-size: 19px; }
+  .detail-text .detail-limit { font-size: 17px; }
+  .shot figcaption b { font-size: 19px; }
+  .shot figcaption span { font-size: 17px; }
+  .detail table { font-size: 17px; }
+  .detail th { font-size: 15px; }
+
+  .board-empty p { font-size: 24px; }
+  .board-empty .now .top { font-size: 18px; }
 }
 
 @media (max-width: 640px) {
