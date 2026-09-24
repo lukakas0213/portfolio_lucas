@@ -1586,45 +1586,6 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
 
 .detail td:first-child { font-weight: 700; white-space: nowrap; }
 
-/* ---------- Board ---------- */
-.board {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--gap);
-}
-
-.board .t-title {
-  grid-column: span 3;
-}
-
-.board-empty {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 26px;
-}
-
-.board-empty p {
-  font-family: var(--kr);
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-}
-
-/* Board 준비 중 배지 (About Now 타일과 클래스 공유하지 않도록 따로 지정) */
-.board-empty .now {
-  padding: 0;
-}
-
-.board-empty .now .top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--mint-ink);
-}
-
 /* ---------- 토스트 ---------- */
 .toast {
   position: fixed;
@@ -1723,9 +1684,7 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .edu-row { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(230px, auto) auto; }
   .edu, .skills-tile { grid-column: auto; }
 
-  .board { grid-template-columns: minmax(0, 1fr); }
   .detail-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .board .t-title { grid-column: auto; }
 }
 
 @media (max-width: 640px) {
@@ -1767,7 +1726,7 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .t-p { padding-top: 18px; }
   .t-p .name { padding: 0 18px; font-size: 20px; }
   .t-l { padding: 20px 22px; }
-  .stack-tile, .board-empty { padding: 18px; }
+  .stack-tile { padding: 18px; }
   .stack-tile h3 { font-size: 26px; }
   .arrow-btn { width: 44px; height: 44px; }
   .t-c { grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -1788,7 +1747,6 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .t-title .label { padding: 0 22px; font-size: 13px; }
   .t-title .word { padding: 0 16px; }
 
-  .board-empty { min-height: 170px; }
 
   .detail-hero { padding: 24px; }
   .detail-hero p { font-size: 16px; }
@@ -1965,8 +1923,6 @@ a.half[href^="#"]:hover .half-icon { transform: translateX(3px); }
   .detail table { font-size: 20px; }
   .detail th { font-size: 17px; }
 
-  .board-empty p { font-size: 28px; }
-  .board-empty .now .top { font-size: 21px; }
 }
 
 @media (max-width: 640px) {

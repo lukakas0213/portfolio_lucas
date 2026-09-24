@@ -25,7 +25,6 @@ const I18N = {
     secArchitecture: '구조와 기술',
     secStrategy: '투자 전략과 평가',
     openImage: '크게 보기',
-    boardSoon: '게시판은<br>준비 중이에요.',
     expSite: '웹사이트',
     expDetail: '경험',
     expWhat: '한 일',
@@ -50,7 +49,6 @@ const I18N = {
     secArchitecture: 'Architecture',
     secStrategy: 'Strategy',
     openImage: 'Open full size',
-    boardSoon: 'The board is<br>coming soon.',
     expSite: 'Website',
     expDetail: 'Experience',
     expWhat: 'What I did',
@@ -574,19 +572,6 @@ const views = {
       <div class="tile detail-text"><p>${t(QUANT.strategyNote)}</p>${table(QUANT.strategy)}<p class="detail-limit">${t(QUANT.limit)}</p></div>
     </section>`;
   },
-
-  board: (L) => `
-    <section class="board">
-      <div class="tile t-title">
-        <span class="label">${L.name}</span>
-        <div class="word">Board</div>
-      </div>
-      <div class="tile mint board-empty">
-        <div class="now"><div class="top"><span class="dot"></span>Soon</div></div>
-        <p>${L.boardSoon}</p>
-      </div>
-    </section>
-  `,
 };
 
 const content = document.getElementById('content');
